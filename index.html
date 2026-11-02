@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Central inteligente da MANÁ STORE">
+<link rel="manifest" href="manifest.webmanifest">
+<title>MANÁ STORE IA</title>
+<style>
+:root{--gold:#e7b943;--bg:#0d0d0f;--panel:#19191d;--muted:#aaa;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font:16px system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:24px 18px 18px;background:linear-gradient(140deg,#242018,#0c0c0e 65%);border-bottom:1px solid #3c3320}
+.brand{color:var(--gold);font-weight:900;letter-spacing:2px;font-size:23px}.sub{color:#c9c3b5;font-size:13px;margin-top:4px}
+main{padding:16px;max-width:720px;margin:auto;padding-bottom:92px}
+h1{font-size:23px;margin:6px 0 14px}h2{font-size:17px;margin:0 0 10px}
+.card{background:var(--panel);border:1px solid #333238;border-radius:17px;padding:16px;margin:12px 0}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.muted{color:var(--muted);font-size:13px;line-height:1.45}
+.pill{border-radius:99px;padding:5px 10px;font-size:11px;background:#3b311a;color:#f4d47d}
+.switch{width:54px;height:30px;border:0;border-radius:30px;background:#555;position:relative;cursor:pointer}
+.switch:after{content:"";width:22px;height:22px;background:white;position:absolute;left:4px;top:4px;border-radius:50%;transition:.2s}
+.switch.on{background:#b88c25}.switch.on:after{left:28px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tile{background:#222126;border:1px solid #38363b;border-radius:14px;padding:14px;min-height:105px}
+.tile b{display:block;margin:7px 0 4px}.ico{font-size:22px;color:var(--gold)}
+button.action{background:var(--gold);color:#17130a;border:0;border-radius:12px;padding:12px 15px;font-weight:800;width:100%;cursor:pointer}
+button.secondary{background:#29282d;color:white;border:1px solid #49464e;border-radius:10px;padding:10px 12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#17171a;border-top:1px solid #37343a;display:flex;justify-content:space-around;padding:9px 4px calc(9px + env(safe-area-inset-bottom));z-index:3}
+nav button{background:none;border:0;color:#c5c1c8;font-size:11px;display:grid;gap:3px;justify-items:center}
+nav button.active{color:var(--gold)}nav span{font-size:20px}
+section.page{display:none}section.page.active{display:block}
+input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #48454d;background:#101013;color:white;margin:6px 0 12px}
+.notice{border-left:3px solid var(--gold);padding:10px 12px;background:#242018;color:#e9dfc5;border-radius:7px;font-size:13px;line-height:1.45}
+ul{padding-left:20px;color:#ddd;font-size:14px;line-height:1.7}
+footer{text-align:center;color:#777;font-size:11px;padding:18px}
+</style>
+</head>
+<body>
+<header><div class="brand">👑 MANÁ STORE IA</div><div class="sub">Achadinhos que valem a pena • Central de vendas</div></header>
+<main>
+<section id="inicio" class="page active">
+<h1>Painel principal</h1>
+<div class="card">
+ <div class="row"><div><div class="pill">CONTROLE DA INTELIGÊNCIA</div><h2 style="margin-top:10px">Operação diária</h2><div id="state" class="muted">Desligada neste protótipo</div></div><button id="toggle" class="switch" aria-label="Ligar ou desligar"></button></div>
+ <p class="muted">Este botão controla apenas o estado visual salvo neste aparelho. A conexão real com pesquisa, afiliados e publicação será adicionada nas próximas etapas.</p>
+</div>
+<div class="grid">
+ <div class="tile"><div class="ico">🔎</div><b>Produtos</b><div class="muted">Oportunidades e ofertas</div></div>
+ <div class="tile"><div class="ico">🧠</div><b>Dores do público</b><div class="muted">Problemas e desejos</div></div>
+ <div class="tile"><div class="ico">🎨</div><b>Divulgação</b><div class="muted">Artes, textos e vídeos</div></div>
+ <div class="tile"><div class="ico">📈</div><b>Resultados</b><div class="muted">Cliques e comissões</div></div>
+</div>
+<div class="card"><h2>Próximos passos</h2><ul><li>Conectar Shopee e Mercado Livre com links rastreados.</li><li>Conectar Instagram e Facebook para agendamento.</li><li>Definir países, idiomas e programas internacionais.</li><li>Adicionar acompanhamento de cliques e vendas.</li></ul></div>
+<div class="notice">Nenhuma venda, comissão ou publicação é simulada como resultado real. A integração será feita com autorização e acesso oficial.</div>
+</section>
+<section id="produtos" class="page">
+<h1>Pesquisa de produtos</h1>
+<div class="card"><h2>Adicionar oportunidade</h2><label class="muted">Nome do produto</label><input id="pname" placeholder="Ex.: organizador de cozinha"><label class="muted">Marketplace</label><select id="market"><option>Shopee</option><option>Mercado Livre</option><option>Internacional</option></select><label class="muted">Link rastreado de afiliado</label><input id="plink" placeholder="Cole seu link de afiliado"><button class="action" id="saveProduct">Salvar produto neste aparelho</button></div>
+<div id="productList" class="card"><h2>Produtos cadastrados</h2><p class="muted">Nenhum produto cadastrado ainda.</p></div>
+</section>
+<section id="dores" class="page">
+<h1>Dores e necessidades</h1>
+<div class="card"><h2>Quadro de pesquisa</h2><p class="muted">A inteligência deverá identificar problemas reais em avaliações, perguntas, tendências e conversas públicas — sem inventar procura.</p><label class="muted">Público ou categoria que deseja investigar</label><input id="audience" placeholder="Ex.: pessoas que querem organizar a cozinha"><button class="action" id="saveAudience">Guardar tema de pesquisa</button><p id="audienceStatus" class="muted"></p></div>
+</section>
+<section id="campanhas" class="page">
+<h1>Campanhas</h1>
+<div class="card"><h2>Preparar divulgação</h2><label class="muted">Produto</label><input placeholder="Nome do produto"><label class="muted">Benefício comprovado</label><textarea rows="3" placeholder="Qual problema resolve? Confirme as características na página do vendedor."></textarea><label class="muted">País e idioma</label><select><option>Brasil • Português</option><option>Portugal • Português</option><option>Estados Unidos • Inglês</option><option>Espanha • Espanhol</option></select><div class="notice">Nesta primeira versão, o app organiza as informações. Geração automática de campanhas e publicação serão conectadas depois.</div></div>
+</section>
+<section id="config" class="page">
+<h1>Configurações</h1>
+<div class="card"><h2>Identidade</h2><p class="muted">MANÁ STORE • Preto e dourado</p><label class="muted">Mercados prioritários</label><select><option>Brasil primeiro</option><option>Brasil + Portugal</option><option>Brasil + Estados Unidos</option><option>Brasil + Portugal + Estados Unidos</option><option>Brasil + mercado internacional amplo</option></select></div>
+<div class="card"><h2>Privacidade e segurança</h2><p class="muted">Não coloque senhas, códigos de autenticação ou tokens neste protótipo. As conexões futuras devem usar autorização oficial das plataformas.</p></div>
+</section>
+</main>
+<nav>
+<button class="active" data-page="inicio"><span>⌂</span>Início</button>
+<button data-page="produtos"><span>⌕</span>Produtos</button>
+<button data-page="dores"><span>🧠</span>Dores</button>
+<button data-page="campanhas"><span>▣</span>Campanhas</button>
+<button data-page="config"><span>⚙</span>Ajustes</button>
+</nav>
+<footer>MANÁ STORE IA • Protótipo inicial gratuito</footer>
+<script>
+const $=id=>document.getElementById(id);
+let enabled=localStorage.getItem('manaEnabled')==='true';
+function render(){ $('toggle').classList.toggle('on',enabled); $('state').textContent=enabled?'Ligada neste aparelho • modo de demonstração':'Desligada neste protótipo';}
+$('toggle').onclick=()=>{enabled=!enabled;localStorage.setItem('manaEnabled',enabled);render();};
+render();
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('section.page').forEach(s=>s.classList.remove('active'));$(b.dataset.page).classList.add('active');});
+function loadProducts(){let a=JSON.parse(localStorage.getItem('manaProducts')||'[]');$('productList').innerHTML='<h2>Produtos cadastrados</h2>'+(a.length?a.map(p=>`<p><b>${escapeHtml(p.name)}</b> • ${escapeHtml(p.market)}<br><span class="muted">${escapeHtml(p.link||'Sem link ainda')}</span></p>`).join(''):'<p class="muted">Nenhum produto cadastrado ainda.</p>');}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+$('saveProduct').onclick=()=>{let name=$('pname').value.trim();if(!name){alert('Digite o nome do produto.');return;}let a=JSON.parse(localStorage.getItem('manaProducts')||'[]');a.push({name,market:$('market').value,link:$('plink').value.trim()});localStorage.setItem('manaProducts',JSON.stringify(a));$('pname').value='';$('plink').value='';loadProducts();alert('Produto salvo neste aparelho.');};
+$('saveAudience').onclick=()=>{$('audienceStatus').textContent=$('audience').value.trim()?'Tema guardado neste aparelho. A pesquisa real será conectada na próxima etapa.':'Digite um tema primeiro.';};
+loadProducts();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+</script>
+</body></html>
