@@ -1,98 +1,534 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
-<meta name="description" content="Central inteligente da MANÁ STORE">
-<link rel="manifest" href="manifest.webmanifest">
+<meta name="description" content="MANÁ STORE IA - Achadinhos que valem a pena">
 <title>MANÁ STORE IA</title>
+
 <style>
-:root{--gold:#e7b943;--bg:#0d0d0f;--panel:#19191d;--muted:#aaa;--white:#fff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font:16px system-ui,-apple-system,Segoe UI,sans-serif}
-header{padding:24px 18px 18px;background:linear-gradient(140deg,#242018,#0c0c0e 65%);border-bottom:1px solid #3c3320}
-.brand{color:var(--gold);font-weight:900;letter-spacing:2px;font-size:23px}.sub{color:#c9c3b5;font-size:13px;margin-top:4px}
-main{padding:16px;max-width:720px;margin:auto;padding-bottom:92px}
-h1{font-size:23px;margin:6px 0 14px}h2{font-size:17px;margin:0 0 10px}
-.card{background:var(--panel);border:1px solid #333238;border-radius:17px;padding:16px;margin:12px 0}
-.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.muted{color:var(--muted);font-size:13px;line-height:1.45}
-.pill{border-radius:99px;padding:5px 10px;font-size:11px;background:#3b311a;color:#f4d47d}
-.switch{width:54px;height:30px;border:0;border-radius:30px;background:#555;position:relative;cursor:pointer}
-.switch:after{content:"";width:22px;height:22px;background:white;position:absolute;left:4px;top:4px;border-radius:50%;transition:.2s}
-.switch.on{background:#b88c25}.switch.on:after{left:28px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.tile{background:#222126;border:1px solid #38363b;border-radius:14px;padding:14px;min-height:105px}
-.tile b{display:block;margin:7px 0 4px}.ico{font-size:22px;color:var(--gold)}
-button.action{background:var(--gold);color:#17130a;border:0;border-radius:12px;padding:12px 15px;font-weight:800;width:100%;cursor:pointer}
-button.secondary{background:#29282d;color:white;border:1px solid #49464e;border-radius:10px;padding:10px 12px}
-nav{position:fixed;bottom:0;left:0;right:0;background:#17171a;border-top:1px solid #37343a;display:flex;justify-content:space-around;padding:9px 4px calc(9px + env(safe-area-inset-bottom));z-index:3}
-nav button{background:none;border:0;color:#c5c1c8;font-size:11px;display:grid;gap:3px;justify-items:center}
-nav button.active{color:var(--gold)}nav span{font-size:20px}
-section.page{display:none}section.page.active{display:block}
-input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #48454d;background:#101013;color:white;margin:6px 0 12px}
-.notice{border-left:3px solid var(--gold);padding:10px 12px;background:#242018;color:#e9dfc5;border-radius:7px;font-size:13px;line-height:1.45}
-ul{padding-left:20px;color:#ddd;font-size:14px;line-height:1.7}
-footer{text-align:center;color:#777;font-size:11px;padding:18px}
+:root {
+  --gold:#e7b943;
+  --bg:#0d0d0f;
+  --panel:#19191d;
+  --muted:#aaa;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--bg);
+  color:white;
+  font-family:Arial,sans-serif;
+}
+header {
+  padding:22px 18px;
+  background:linear-gradient(140deg,#292216,#101010);
+  border-bottom:1px solid #55431d;
+}
+.brand {
+  color:var(--gold);
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+.sub {color:#ccc;font-size:13px;margin-top:5px}
+main {
+  max-width:750px;
+  margin:auto;
+  padding:16px 15px 100px;
+}
+h1 {font-size:23px}
+h2 {font-size:18px}
+.card {
+  background:var(--panel);
+  border:1px solid #37343a;
+  border-radius:15px;
+  padding:16px;
+  margin:13px 0;
+}
+.muted {color:var(--muted);font-size:13px;line-height:1.5}
+label {
+  display:block;
+  color:#ccc;
+  font-size:13px;
+  margin-top:10px;
+}
+input,select,textarea {
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #48454d;
+  border-radius:9px;
+  background:#101013;
+  color:white;
+  font-size:15px;
+}
+button {cursor:pointer}
+.action {
+  width:100%;
+  padding:14px;
+  background:var(--gold);
+  color:#17130a;
+  border:0;
+  border-radius:10px;
+  font-weight:bold;
+  margin-top:10px;
+}
+.secondary {
+  padding:9px 12px;
+  background:#302e33;
+  border:1px solid #555;
+  color:white;
+  border-radius:8px;
+}
+nav {
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-around;
+  background:#19191d;
+  border-top:1px solid #39363b;
+  padding:12px 3px;
+  z-index:5;
+}
+nav button {
+  background:none;
+  border:0;
+  color:white;
+  font-size:12px;
+}
+nav button.active {color:var(--gold)}
+.page {display:none}
+.page.active {display:block}
+.product {
+  display:flex;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid #39363b;
+}
+.product:last-child {border-bottom:0}
+.product img {
+  width:105px;
+  height:105px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#29282d;
+  flex-shrink:0;
+}
+.product-info {flex:1;min-width:0}
+.product-name {font-weight:bold}
+.price {
+  color:var(--gold);
+  font-size:17px;
+  font-weight:bold;
+  margin:7px 0;
+}
+.buy {
+  display:inline-block;
+  margin-top:9px;
+  padding:9px 15px;
+  border-radius:8px;
+  background:var(--gold);
+  color:#17130a;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:13px;
+}
+.stats {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.stat {
+  background:#252329;
+  padding:14px;
+  border-radius:10px;
+}
+.stat strong {
+  display:block;
+  color:var(--gold);
+  font-size:24px;
+}
+.notice {
+  background:#292216;
+  border-left:3px solid var(--gold);
+  padding:12px;
+  border-radius:7px;
+  color:#e9dfc5;
+  font-size:13px;
+  line-height:1.5;
+}
+footer {
+  text-align:center;
+  color:#777;
+  font-size:11px;
+  padding:20px;
+}
+@media(max-width:380px) {
+  .product img {width:85px;height:85px}
+}
 </style>
 </head>
+
 <body>
-<header><div class="brand">👑 MANÁ STORE IA</div><div class="sub">Achadinhos que valem a pena • Central de vendas</div></header>
+
+<header>
+  <div class="brand">👑 MANÁ STORE IA</div>
+  <div class="sub">Achadinhos que valem a pena • Central de vendas</div>
+</header>
+
 <main>
+
 <section id="inicio" class="page active">
-<h1>Painel principal</h1>
-<div class="card">
- <div class="row"><div><div class="pill">CONTROLE DA INTELIGÊNCIA</div><h2 style="margin-top:10px">Operação diária</h2><div id="state" class="muted">Desligada neste protótipo</div></div><button id="toggle" class="switch" aria-label="Ligar ou desligar"></button></div>
- <p class="muted">Este botão controla apenas o estado visual salvo neste aparelho. A conexão real com pesquisa, afiliados e publicação será adicionada nas próximas etapas.</p>
-</div>
-<div class="grid">
- <div class="tile"><div class="ico">🔎</div><b>Produtos</b><div class="muted">Oportunidades e ofertas</div></div>
- <div class="tile"><div class="ico">🧠</div><b>Dores do público</b><div class="muted">Problemas e desejos</div></div>
- <div class="tile"><div class="ico">🎨</div><b>Divulgação</b><div class="muted">Artes, textos e vídeos</div></div>
- <div class="tile"><div class="ico">📈</div><b>Resultados</b><div class="muted">Cliques e comissões</div></div>
-</div>
-<div class="card"><h2>Próximos passos</h2><ul><li>Conectar Shopee e Mercado Livre com links rastreados.</li><li>Conectar Instagram e Facebook para agendamento.</li><li>Definir países, idiomas e programas internacionais.</li><li>Adicionar acompanhamento de cliques e vendas.</li></ul></div>
-<div class="notice">Nenhuma venda, comissão ou publicação é simulada como resultado real. A integração será feita com autorização e acesso oficial.</div>
+  <h1>Painel principal</h1>
+
+  <div class="card">
+    <h2>Bem-vindo à MANÁ STORE</h2>
+    <p class="muted">
+      Sua central para organizar produtos, ofertas e links de afiliados.
+    </p>
+    <div class="notice">
+      Cadastre seus produtos, coloque suas fotos e divulgue sua vitrine.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Resumo da loja</h2>
+    <div class="stats">
+      <div class="stat">
+        <strong id="homeProducts">0</strong>
+        <span class="muted">Produtos</span>
+      </div>
+      <div class="stat">
+        <strong id="homeClicks">0</strong>
+        <span class="muted">Cliques</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Como funciona</h2>
+    <p class="muted">
+      1. Cadastre um produto.<br>
+      2. Adicione foto e preço.<br>
+      3. Cole seu link de afiliado.<br>
+      4. Compartilhe sua vitrine.
+    </p>
+    <button class="action" onclick="openPage('produtos')">
+      CADASTRAR PRODUTO
+    </button>
+  </div>
 </section>
+
 <section id="produtos" class="page">
-<h1>Pesquisa de produtos</h1>
-<div class="card"><h2>Adicionar oportunidade</h2><label class="muted">Nome do produto</label><input id="pname" placeholder="Ex.: organizador de cozinha"><label class="muted">Marketplace</label><select id="market"><option>Shopee</option><option>Mercado Livre</option><option>Internacional</option></select><label class="muted">Link rastreado de afiliado</label><input id="plink" placeholder="Cole seu link de afiliado"><button class="action" id="saveProduct">Salvar produto neste aparelho</button></div>
-<div id="productList" class="card"><h2>Produtos cadastrados</h2><p class="muted">Nenhum produto cadastrado ainda.</p></div>
+  <h1>Minha loja</h1>
+
+  <div class="card">
+    <h2>Novo produto</h2>
+
+    <label for="name">Nome do produto</label>
+    <input id="name" placeholder="Ex.: Fone Bluetooth">
+
+    <label for="market">Marketplace</label>
+    <select id="market">
+      <option>Shopee</option>
+      <option>Mercado Livre</option>
+      <option>Internacional</option>
+    </select>
+
+    <label for="price">Preço</label>
+    <input id="price" placeholder="Ex.: 89,90">
+
+    <label for="photo">Endereço da foto</label>
+    <input id="photo" type="url" placeholder="https://...">
+
+    <p class="muted">
+      Cole o endereço direto de uma imagem pública. O link de afiliado não fornece automaticamente a foto.
+    </p>
+
+    <label for="affiliate">Link rastreado de afiliado</label>
+    <input id="affiliate" type="url" placeholder="Cole seu link da Shopee ou Mercado Livre">
+
+    <button class="action" onclick="saveProduct()">
+      SALVAR PRODUTO
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>Produtos cadastrados</h2>
+    <div id="productList"></div>
+  </div>
 </section>
-<section id="dores" class="page">
-<h1>Dores e necessidades</h1>
-<div class="card"><h2>Quadro de pesquisa</h2><p class="muted">A inteligência deverá identificar problemas reais em avaliações, perguntas, tendências e conversas públicas — sem inventar procura.</p><label class="muted">Público ou categoria que deseja investigar</label><input id="audience" placeholder="Ex.: pessoas que querem organizar a cozinha"><button class="action" id="saveAudience">Guardar tema de pesquisa</button><p id="audienceStatus" class="muted"></p></div>
+
+<section id="resultados" class="page">
+  <h1>Resultados</h1>
+
+  <div class="card">
+    <div class="stats">
+      <div class="stat">
+        <strong id="resultProducts">0</strong>
+        <span class="muted">Produtos</span>
+      </div>
+      <div class="stat">
+        <strong id="resultClicks">0</strong>
+        <span class="muted">Cliques</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice">
+    Os cliques são contados neste aparelho. Vendas e comissões precisam ser conferidas nos painéis oficiais dos marketplaces.
+  </div>
 </section>
-<section id="campanhas" class="page">
-<h1>Campanhas</h1>
-<div class="card"><h2>Preparar divulgação</h2><label class="muted">Produto</label><input placeholder="Nome do produto"><label class="muted">Benefício comprovado</label><textarea rows="3" placeholder="Qual problema resolve? Confirme as características na página do vendedor."></textarea><label class="muted">País e idioma</label><select><option>Brasil • Português</option><option>Portugal • Português</option><option>Estados Unidos • Inglês</option><option>Espanha • Espanhol</option></select><div class="notice">Nesta primeira versão, o app organiza as informações. Geração automática de campanhas e publicação serão conectadas depois.</div></div>
-</section>
+
 <section id="config" class="page">
-<h1>Configurações</h1>
-<div class="card"><h2>Identidade</h2><p class="muted">MANÁ STORE • Preto e dourado</p><label class="muted">Mercados prioritários</label><select><option>Brasil primeiro</option><option>Brasil + Portugal</option><option>Brasil + Estados Unidos</option><option>Brasil + Portugal + Estados Unidos</option><option>Brasil + mercado internacional amplo</option></select></div>
-<div class="card"><h2>Privacidade e segurança</h2><p class="muted">Não coloque senhas, códigos de autenticação ou tokens neste protótipo. As conexões futuras devem usar autorização oficial das plataformas.</p></div>
+  <h1>Configurações</h1>
+
+  <div class="card">
+    <h2>Mercados prioritários</h2>
+    <select id="region">
+      <option>Brasil</option>
+      <option>Brasil e Portugal</option>
+      <option>Brasil e Estados Unidos</option>
+      <option>Mercado internacional</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>Integrações futuras</h2>
+    <p class="muted">
+      Shopee, Mercado Livre, Instagram e Facebook.
+    </p>
+    <div class="notice">
+      As conexões automáticas ainda precisam de APIs, autorização oficial e serviços de integração. Não estão ativadas nesta versão.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Segurança</h2>
+    <p class="muted">
+      Não informe senhas, tokens ou códigos de autenticação nesta página.
+    </p>
+  </div>
 </section>
+
 </main>
+
 <nav>
-<button class="active" data-page="inicio"><span>⌂</span>Início</button>
-<button data-page="produtos"><span>⌕</span>Produtos</button>
-<button data-page="dores"><span>🧠</span>Dores</button>
-<button data-page="campanhas"><span>▣</span>Campanhas</button>
-<button data-page="config"><span>⚙</span>Ajustes</button>
+  <button class="active" onclick="openPage('inicio',this)">🏠 Início</button>
+  <button onclick="openPage('produtos',this)">🛍️ Produtos</button>
+  <button onclick="openPage('resultados',this)">📊 Resultados</button>
+  <button onclick="openPage('config',this)">⚙️ Ajustes</button>
 </nav>
-<footer>MANÁ STORE IA • Protótipo inicial gratuito</footer>
+
+<footer>MANÁ STORE IA • Catálogo de afiliados</footer>
+
 <script>
-const $=id=>document.getElementById(id);
-let enabled=localStorage.getItem('manaEnabled')==='true';
-function render(){ $('toggle').classList.toggle('on',enabled); $('state').textContent=enabled?'Ligada neste aparelho • modo de demonstração':'Desligada neste protótipo';}
-$('toggle').onclick=()=>{enabled=!enabled;localStorage.setItem('manaEnabled',enabled);render();};
-render();
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('section.page').forEach(s=>s.classList.remove('active'));$(b.dataset.page).classList.add('active');});
-function loadProducts(){let a=JSON.parse(localStorage.getItem('manaProducts')||'[]');$('productList').innerHTML='<h2>Produtos cadastrados</h2>'+(a.length?a.map(p=>`<p><b>${escapeHtml(p.name)}</b> • ${escapeHtml(p.market)}<br><span class="muted">${escapeHtml(p.link||'Sem link ainda')}</span></p>`).join(''):'<p class="muted">Nenhum produto cadastrado ainda.</p>');}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-$('saveProduct').onclick=()=>{let name=$('pname').value.trim();if(!name){alert('Digite o nome do produto.');return;}let a=JSON.parse(localStorage.getItem('manaProducts')||'[]');a.push({name,market:$('market').value,link:$('plink').value.trim()});localStorage.setItem('manaProducts',JSON.stringify(a));$('pname').value='';$('plink').value='';loadProducts();alert('Produto salvo neste aparelho.');};
-$('saveAudience').onclick=()=>{$('audienceStatus').textContent=$('audience').value.trim()?'Tema guardado neste aparelho. A pesquisa real será conectada na próxima etapa.':'Digite um tema primeiro.';};
-loadProducts();
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+function readData(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function saveData(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function safeUrl(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol === "https:" || url.protocol === "http:") {
+      return url.href;
+    }
+  } catch (error) {}
+  return "";
+}
+
+function openPage(id, button) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll("nav button").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  if (button) button.classList.add("active");
+
+  updateStats();
+  if (id === "produtos") renderProducts();
+}
+
+function saveProduct() {
+  const name = document.getElementById("name").value.trim();
+  const market = document.getElementById("market").value;
+  const price = document.getElementById("price").value.trim();
+  const photoInput = document.getElementById("photo").value.trim();
+  const affiliateInput = document.getElementById("affiliate").value.trim();
+
+  const affiliate = safeUrl(affiliateInput);
+  const photo = photoInput ? safeUrl(photoInput) : "";
+
+  if (!name) {
+    alert("Digite o nome do produto.");
+    return;
+  }
+
+  if (!affiliate) {
+    alert("Informe um link de afiliado válido.");
+    return;
+  }
+
+  if (photoInput && !photo) {
+    alert("Confira o endereço da foto.");
+    return;
+  }
+
+  const products = readData("manaProducts", []);
+
+  products.push({
+    id: Date.now().toString() + Math.random().toString(16).slice(2),
+    name,
+    market,
+    price,
+    photo,
+    affiliate
+  });
+
+  saveData("manaProducts", products);
+
+  document.getElementById("name").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("photo").value = "";
+  document.getElementById("affiliate").value = "";
+
+  renderProducts();
+  updateStats();
+
+  alert("Produto cadastrado com sucesso!");
+}
+
+function renderProducts() {
+  const products = readData("manaProducts", []);
+  const clicks = readData("manaClicks", {});
+  const list = document.getElementById("productList");
+
+  list.innerHTML = "";
+
+  if (!products.length) {
+    list.textContent = "Nenhum produto cadastrado ainda.";
+    list.className = "muted";
+    return;
+  }
+
+  list.className = "";
+
+  products.forEach(product => {
+    const row = document.createElement("div");
+    row.className = "product";
+
+    const img = document.createElement("img");
+    img.alt = product.name;
+
+    if (product.photo) {
+      img.src = product.photo;
+      img.onerror = () => {
+        img.style.display = "none";
+      };
+    } else {
+      img.style.display = "none";
+    }
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+
+    const title = document.createElement("div");
+    title.className = "product-name";
+    title.textContent = product.name;
+
+    const market = document.createElement("div");
+    market.className = "muted";
+    market.textContent = product.market;
+
+    info.append(title, market);
+
+    if (product.price) {
+      const price = document.createElement("div");
+      price.className = "price";
+      price.textContent = "R$ " + product.price;
+      info.appendChild(price);
+    }
+
+    const count = document.createElement("div");
+    count.className = "muted";
+    count.textContent = (clicks[product.id] || 0) + " clique(s)";
+    info.appendChild(count);
+
+    const buy = document.createElement("a");
+    buy.className = "buy";
+    buy.href = product.affiliate;
+    buy.target = "_blank";
+    buy.rel = "noopener noreferrer";
+    buy.textContent = "COMPRAR";
+
+    buy.addEventListener("click", () => {
+      const current = readData("manaClicks", {});
+      current[product.id] = (current[product.id] || 0) + 1;
+      saveData("manaClicks", current);
+      updateStats();
+      count.textContent = current[product.id] + " clique(s)";
+    });
+
+    info.appendChild(buy);
+
+    const remove = document.createElement("button");
+    remove.className = "secondary";
+    remove.textContent = "Excluir";
+    remove.style.display = "block";
+    remove.style.marginTop = "8px";
+
+    remove.addEventListener("click", () => {
+      if (!confirm("Deseja excluir este produto?")) return;
+
+      const updated = readData("manaProducts", [])
+        .filter(item => item.id !== product.id);
+
+      saveData("manaProducts", updated);
+      renderProducts();
+      updateStats();
+    });
+
+    info.appendChild(remove);
+    row.append(img, info);
+    list.appendChild(row);
+  });
+}
+
+function updateStats() {
+  const products = readData("manaProducts", []);
+  const clicks = readData("manaClicks", {});
+
+  const totalClicks = Object.values(clicks)
+    .reduce((sum, value) => sum + Number(value || 0), 0);
+
+  document.getElementById("homeProducts").textContent = products.length;
+  document.getElementById("homeClicks").textContent = totalClicks;
+  document.getElementById("resultProducts").textContent = products.length;
+  document.getElementById("resultClicks").textContent = totalClicks;
+}
+
+renderProducts();
+updateStats();
 </script>
-</body></html>
+
+</body>
+</html>
