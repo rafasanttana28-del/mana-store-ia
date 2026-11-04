@@ -1,136 +1,534 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111111">
-<meta name="description" content="MANÁ STORE IA — central de inteligência comercial e afiliados">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="MANÁ STORE IA - Achadinhos que valem a pena">
 <title>MANÁ STORE IA</title>
+
 <style>
-:root{--gold:#e7b943;--bg:#0d0d0f;--panel:#19191d;--muted:#aaa;--line:#39363b;--green:#73c99a;--red:#e58b8b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font:15px Arial,sans-serif}header{padding:20px;background:linear-gradient(140deg,#292216,#101010);border-bottom:1px solid #55431d}.brand{color:var(--gold);font-size:23px;font-weight:900;letter-spacing:1.5px}.sub,.muted{color:var(--muted);font-size:13px;line-height:1.5}main{max-width:900px;margin:auto;padding:16px 14px 100px}h1{font-size:23px}h2{font-size:17px;margin-top:0}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:13px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}.stat{background:#252329;padding:14px;border-radius:10px}.stat strong{display:block;color:var(--gold);font-size:24px}.notice{background:#292216;border-left:3px solid var(--gold);padding:12px;border-radius:7px;color:#e9dfc5;font-size:13px;line-height:1.5}label{display:block;color:#ccc;font-size:13px;margin-top:10px}input,select,textarea{width:100%;padding:12px;margin:6px 0;background:#101013;color:white;border:1px solid #48454d;border-radius:8px;font-size:15px}textarea{min-height:75px;resize:vertical}button{cursor:pointer}.btn{padding:11px 14px;border:0;border-radius:8px;background:var(--gold);color:#17130a;font-weight:bold;margin:5px 4px 0 0}.secondary{background:#302e33;color:#fff;border:1px solid #555}.danger{background:#512b2b;color:#fff}.tabs{display:flex;gap:5px;overflow:auto;position:sticky;top:0;background:#111;padding:8px 0;z-index:3}.tabs button{white-space:nowrap;background:#252329;color:#ddd;border:1px solid #444;border-radius:8px;padding:10px;font-size:12px}.tabs button.active{color:var(--gold);border-color:var(--gold)}.page{display:none}.page.active{display:block}.row{display:flex;gap:12px;align-items:flex-start;border-bottom:1px solid var(--line);padding:12px 0}.row:last-child{border:0}.rowbody{flex:1;min-width:0;overflow-wrap:anywhere}.pill{display:inline-block;border:1px solid #66552b;border-radius:20px;padding:3px 8px;color:var(--gold);font-size:11px;margin:3px 3px 3px 0}.productname{font-weight:bold}.actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.check{display:flex;gap:8px;align-items:center}.check input{width:auto}.small{font-size:12px;color:var(--muted)}footer{text-align:center;color:#777;font-size:11px;padding:20px}.empty{color:var(--muted);font-size:13px;padding:12px 0}a{color:var(--gold)}@media(min-width:700px){.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}}
-.master-control{margin:14px 0 18px;padding:16px;border:2px solid var(--green);border-radius:16px;background:linear-gradient(135deg,#17251d,#19191d);display:flex;align-items:center;justify-content:space-between;gap:14px}.master-control.paused{border-color:var(--red);background:linear-gradient(135deg,#2b1919,#19191d)}.master-copy{min-width:0}.master-title{font-size:17px;font-weight:800}.master-status{font-size:13px;color:var(--muted);margin-top:5px;line-height:1.4}.master-button{min-width:132px;min-height:58px;border:0;border-radius:12px;background:#237a48;color:#fff;font-size:17px;font-weight:900;padding:12px}.master-button.off{background:#8a3434}.master-button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}@media(max-width:420px){.master-control{align-items:stretch;flex-direction:column}.master-button{width:100%}}</style>
+:root {
+  --gold:#e7b943;
+  --bg:#0d0d0f;
+  --panel:#19191d;
+  --muted:#aaa;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--bg);
+  color:white;
+  font-family:Arial,sans-serif;
+}
+header {
+  padding:22px 18px;
+  background:linear-gradient(140deg,#292216,#101010);
+  border-bottom:1px solid #55431d;
+}
+.brand {
+  color:var(--gold);
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+.sub {color:#ccc;font-size:13px;margin-top:5px}
+main {
+  max-width:750px;
+  margin:auto;
+  padding:16px 15px 100px;
+}
+h1 {font-size:23px}
+h2 {font-size:18px}
+.card {
+  background:var(--panel);
+  border:1px solid #37343a;
+  border-radius:15px;
+  padding:16px;
+  margin:13px 0;
+}
+.muted {color:var(--muted);font-size:13px;line-height:1.5}
+label {
+  display:block;
+  color:#ccc;
+  font-size:13px;
+  margin-top:10px;
+}
+input,select,textarea {
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #48454d;
+  border-radius:9px;
+  background:#101013;
+  color:white;
+  font-size:15px;
+}
+button {cursor:pointer}
+.action {
+  width:100%;
+  padding:14px;
+  background:var(--gold);
+  color:#17130a;
+  border:0;
+  border-radius:10px;
+  font-weight:bold;
+  margin-top:10px;
+}
+.secondary {
+  padding:9px 12px;
+  background:#302e33;
+  border:1px solid #555;
+  color:white;
+  border-radius:8px;
+}
+nav {
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-around;
+  background:#19191d;
+  border-top:1px solid #39363b;
+  padding:12px 3px;
+  z-index:5;
+}
+nav button {
+  background:none;
+  border:0;
+  color:white;
+  font-size:12px;
+}
+nav button.active {color:var(--gold)}
+.page {display:none}
+.page.active {display:block}
+.product {
+  display:flex;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid #39363b;
+}
+.product:last-child {border-bottom:0}
+.product img {
+  width:105px;
+  height:105px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#29282d;
+  flex-shrink:0;
+}
+.product-info {flex:1;min-width:0}
+.product-name {font-weight:bold}
+.price {
+  color:var(--gold);
+  font-size:17px;
+  font-weight:bold;
+  margin:7px 0;
+}
+.buy {
+  display:inline-block;
+  margin-top:9px;
+  padding:9px 15px;
+  border-radius:8px;
+  background:var(--gold);
+  color:#17130a;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:13px;
+}
+.stats {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.stat {
+  background:#252329;
+  padding:14px;
+  border-radius:10px;
+}
+.stat strong {
+  display:block;
+  color:var(--gold);
+  font-size:24px;
+}
+.notice {
+  background:#292216;
+  border-left:3px solid var(--gold);
+  padding:12px;
+  border-radius:7px;
+  color:#e9dfc5;
+  font-size:13px;
+  line-height:1.5;
+}
+footer {
+  text-align:center;
+  color:#777;
+  font-size:11px;
+  padding:20px;
+}
+@media(max-width:380px) {
+  .product img {width:85px;height:85px}
+}
+</style>
 </head>
+
 <body>
-<header><div class="brand">👑 MANÁ STORE IA</div><div class="sub">Inteligência comercial • Brasil e exterior • afiliados</div></header>
+
+<header>
+  <div class="brand">👑 MANÁ STORE IA</div>
+  <div class="sub">Achadinhos que valem a pena • Central de vendas</div>
+</header>
+
 <main>
-<div class="master-control" id="masterControl"><div class="master-copy"><div class="master-title">CONTROLE GERAL DA MANÁ STORE IA</div><div class="master-status" id="masterStatus" aria-live="polite">Sistema ligado neste navegador. Automações externas ainda dependem de integração.</div></div><button type="button" class="master-button" id="masterButton" onclick="toggleMaster()" aria-pressed="true">● LIGADO</button></div>
-<div class="tabs">
-<button class="active" data-page="home">⌂ Painel</button><button data-page="products">▣ Produtos</button><button data-page="research">✦ Oportunidades</button><button data-page="approvals">✓ Aprovações</button><button data-page="metrics">▥ Resultados</button><button data-page="settings">⚙ Ajustes</button>
-</div>
-<section id="home" class="page active">
-<h1>Painel de controle</h1>
-<div class="card"><h2>Visão geral da operação</h2><div class="grid">
-<div class="stat"><strong id="statProducts">0</strong><span class="muted">Produtos cadastrados</span></div>
-<div class="stat"><strong id="statResearch">0</strong><span class="muted">Oportunidades em análise</span></div>
-<div class="stat"><strong id="statPending">0</strong><span class="muted">Aguardando aprovação</span></div>
-<div class="stat"><strong id="statClicks">0</strong><span class="muted">Cliques locais</span></div>
-</div></div>
-<div class="notice">Central de organização e decisão. Esta versão salva dados neste navegador. Ainda não pesquisa marketplaces sozinha nem publica nas redes. Integrações oficiais serão conectadas em etapas futuras.</div>
-<div class="card"><h2>Regras de segurança ativas</h2><p class="muted">• Publicações orgânicas: ficam na fila até existir canal conectado e autorização de publicação.<br>• Anúncios pagos: bloqueados até sua aprovação explícita de cada campanha, orçamento, público, criativo e período.<br>• Vendas e comissões: só serão consideradas confirmadas quando vierem do painel oficial do afiliado.</p></div>
-<div class="card"><h2>Ações rápidas</h2><button class="btn" onclick="go('products')">Cadastrar produto</button><button class="btn secondary" onclick="go('research')">Registrar oportunidade</button><button class="btn secondary" onclick="go('approvals')">Ver aprovações</button></div>
+
+<section id="inicio" class="page active">
+  <h1>Painel principal</h1>
+
+  <div class="card">
+    <h2>Bem-vindo à MANÁ STORE</h2>
+    <p class="muted">
+      Sua central para organizar produtos, ofertas e links de afiliados.
+    </p>
+    <div class="notice">
+      Cadastre seus produtos, coloque suas fotos e divulgue sua vitrine.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Resumo da loja</h2>
+    <div class="stats">
+      <div class="stat">
+        <strong id="homeProducts">0</strong>
+        <span class="muted">Produtos</span>
+      </div>
+      <div class="stat">
+        <strong id="homeClicks">0</strong>
+        <span class="muted">Cliques</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Como funciona</h2>
+    <p class="muted">
+      1. Cadastre um produto.<br>
+      2. Adicione foto e preço.<br>
+      3. Cole seu link de afiliado.<br>
+      4. Compartilhe sua vitrine.
+    </p>
+    <button class="action" onclick="openPage('produtos')">
+      CADASTRAR PRODUTO
+    </button>
+  </div>
 </section>
-<section id="products" class="page">
-<h1>Catálogo de produtos</h1>
-<div class="card"><h2 id="formTitle">Cadastrar produto</h2><input type="hidden" id="editId">
-<div class="formgrid">
-<div><label>Nome do produto *</label><input id="pName" placeholder="Ex.: Removedor de pelos reutilizável"></div>
-<div><label>Marketplace / programa *</label><select id="pMarket"><option>Shopee</option><option>Mercado Livre</option><option>Amazon Associates</option><option>Kiwify</option><option>Hotmart</option><option>Outro</option></select></div>
-<div><label>País-alvo *</label><select id="pCountry"><option value="BR">Brasil</option><option value="US">Estados Unidos</option><option value="PT">Portugal</option><option value="GB">Reino Unido</option><option value="MX">México</option><option value="Other">Outro país</option></select></div>
-<div><label>Idioma</label><select id="pLanguage"><option value="pt-BR">Português</option><option value="en">Inglês</option><option value="es">Espanhol</option></select></div>
-<div><label>Moeda</label><select id="pCurrency"><option>BRL</option><option>USD</option><option>EUR</option><option>GBP</option><option>MXN</option></select></div>
-<div><label>Preço (opcional)</label><input id="pPrice" type="number" min="0" step="0.01" placeholder="Ex.: 89.90"></div>
-<div><label>Comissão (%) — se confirmada</label><input id="pCommission" type="number" min="0" max="100" step="0.01" placeholder="Não estimar sem fonte"></div>
-<div><label>Link público do produto</label><input id="pPublic" type="url" placeholder="https://..."></div>
-<div><label>Seu link rastreado de afiliado *</label><input id="pAffiliate" type="url" placeholder="https://..."></div>
-<div><label>Foto pública (URL opcional)</label><input id="pImage" type="url" placeholder="https://..."></div>
-<div><label>Status</label><select id="pStatus"><option value="draft">Rascunho</option><option value="validating">Em validação</option><option value="content_approved">Aprovado para conteúdo</option><option value="paused">Pausado</option></select></div>
-</div>
-<label class="check"><input type="checkbox" id="pConfirmed"> Confirmei este link rastreado no painel oficial do programa</label>
-<label>Observações e riscos</label><textarea id="pNotes" placeholder="Entrega no país, restrições, reputação, concorrência..."></textarea>
-<button class="btn" onclick="saveProduct()">Salvar produto</button><button class="btn secondary" onclick="resetProduct()">Limpar</button>
-<p class="small">* Não confunda o link público com seu link pessoal de afiliado. Só marque a confirmação depois de verificar no painel oficial.</p>
-</div>
-<div class="card"><h2>Produtos cadastrados</h2><input id="productSearch" placeholder="Buscar por nome, país ou marketplace" oninput="renderProducts()"><div id="productList" class="empty">Nenhum produto cadastrado.</div></div>
+
+<section id="produtos" class="page">
+  <h1>Minha loja</h1>
+
+  <div class="card">
+    <h2>Novo produto</h2>
+
+    <label for="name">Nome do produto</label>
+    <input id="name" placeholder="Ex.: Fone Bluetooth">
+
+    <label for="market">Marketplace</label>
+    <select id="market">
+      <option>Shopee</option>
+      <option>Mercado Livre</option>
+      <option>Internacional</option>
+    </select>
+
+    <label for="price">Preço</label>
+    <input id="price" placeholder="Ex.: 89,90">
+
+    <label for="photo">Endereço da foto</label>
+    <input id="photo" type="url" placeholder="https://...">
+
+    <p class="muted">
+      Cole o endereço direto de uma imagem pública. O link de afiliado não fornece automaticamente a foto.
+    </p>
+
+    <label for="affiliate">Link rastreado de afiliado</label>
+    <input id="affiliate" type="url" placeholder="Cole seu link da Shopee ou Mercado Livre">
+
+    <button class="action" onclick="saveProduct()">
+      SALVAR PRODUTO
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>Produtos cadastrados</h2>
+    <div id="productList"></div>
+  </div>
 </section>
-<section id="research" class="page">
-<h1>Radar de oportunidades</h1>
-<div class="card"><h2>Registrar uma oportunidade pesquisada</h2><div class="formgrid">
-<div><label>Produto / nicho *</label><input id="rName" placeholder="Ex.: organizador de cozinha"></div>
-<div><label>Mercado</label><select id="rCountry"><option>Brasil</option><option>Estados Unidos</option><option>Portugal</option><option>Outro</option></select></div>
-<div><label>Potencial comercial (hipótese)</label><select id="rPotential"><option>Não avaliado</option><option>Baixo</option><option>Médio</option><option>Alto</option></select></div>
-<div><label>Confiança nas evidências</label><select id="rConfidence"><option>Baixa</option><option>Média</option><option>Alta</option></select></div>
-</div>
-<label>Fonte / URL pesquisada *</label><input id="rSource" type="url" placeholder="https://...">
-<label>Data da consulta</label><input id="rDate" type="date">
-<label>O que a fonte comprova? Concorrência, avaliações, preço, procura etc.</label><textarea id="rNotes" placeholder="Descreva o dado observado e o que ainda falta verificar."></textarea>
-<button class="btn" onclick="saveResearch()">Salvar oportunidade</button></div>
-<div class="notice">Esta área registra pesquisas feitas e suas fontes. Ela não coleta tendências automaticamente nesta versão. Potencial comercial é uma hipótese; confiança mede a qualidade das evidências.</div>
-<div class="card"><h2>Oportunidades registradas</h2><div id="researchList" class="empty">Nenhuma oportunidade registrada.</div></div>
+
+<section id="resultados" class="page">
+  <h1>Resultados</h1>
+
+  <div class="card">
+    <div class="stats">
+      <div class="stat">
+        <strong id="resultProducts">0</strong>
+        <span class="muted">Produtos</span>
+      </div>
+      <div class="stat">
+        <strong id="resultClicks">0</strong>
+        <span class="muted">Cliques</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice">
+    Os cliques são contados neste aparelho. Vendas e comissões precisam ser conferidas nos painéis oficiais dos marketplaces.
+  </div>
 </section>
-<section id="approvals" class="page">
-<h1>Central de aprovações</h1>
-<div class="card"><h2>Preparar publicação orgânica</h2>
-<label>Canal</label><select id="oChannel"><option>Instagram</option><option>Facebook</option><option>Ambos</option></select>
-<label>Conteúdo / legenda</label><textarea id="oContent" placeholder="Texto do post, incluindo identificação de publicidade/afiliado..."></textarea>
-<label>Link do produto cadastrado (opcional)</label><select id="oProduct"><option value="">Sem produto vinculado</option></select>
-<button class="btn" onclick="queueOrganic()">Adicionar à fila orgânica</button>
-<p class="small">Adicionar à fila não publica. A publicação depende de integração oficial, conta conectada e confirmação de execução.</p></div>
-<div class="card"><h2>Solicitar aprovação de anúncio pago</h2><div class="notice">Nenhum anúncio será criado, impulsionado ou cobrado sem sua aprovação específica. Preencha os detalhes para registrar uma solicitação.</div>
-<label>Plataforma</label><select id="aPlatform"><option>Meta Ads</option><option>Google Ads</option><option>Outra</option></select>
-<label>Produto / destino</label><select id="aProduct"><option value="">Selecione depois</option></select>
-<label>Orçamento diário e moeda</label><input id="aBudget" placeholder="Ex.: R$ 20/dia">
-<label>Período</label><input id="aPeriod" placeholder="Ex.: 10 a 17 de novembro">
-<label>Público</label><textarea id="aAudience" placeholder="País, idade, interesses e idioma"></textarea>
-<label>Criativo e texto do anúncio</label><textarea id="aCreative" placeholder="Descreva imagem/vídeo e copy"></textarea>
-<label>Destino / URL</label><input id="aDestination" type="url" placeholder="https://...">
-<button class="btn" onclick="requestAd()">Registrar campanha para aprovação</button></div>
-<div class="card"><h2>Fila orgânica</h2><div id="organicList" class="empty">Fila vazia.</div></div>
-<div class="card"><h2>Campanhas pagas — aprovação pendente</h2><div id="adsList" class="empty">Nenhuma solicitação.</div></div>
+
+<section id="config" class="page">
+  <h1>Configurações</h1>
+
+  <div class="card">
+    <h2>Mercados prioritários</h2>
+    <select id="region">
+      <option>Brasil</option>
+      <option>Brasil e Portugal</option>
+      <option>Brasil e Estados Unidos</option>
+      <option>Mercado internacional</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>Integrações futuras</h2>
+    <p class="muted">
+      Shopee, Mercado Livre, Instagram e Facebook.
+    </p>
+    <div class="notice">
+      As conexões automáticas ainda precisam de APIs, autorização oficial e serviços de integração. Não estão ativadas nesta versão.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Segurança</h2>
+    <p class="muted">
+      Não informe senhas, tokens ou códigos de autenticação nesta página.
+    </p>
+  </div>
 </section>
-<section id="metrics" class="page">
-<h1>Resultados e métricas</h1><div class="card"><div class="grid">
-<div class="stat"><strong id="mProducts">0</strong><span class="muted">Produtos</span></div>
-<div class="stat"><strong id="mClicks">0</strong><span class="muted">Cliques registrados neste navegador</span></div>
-<div class="stat"><strong id="mOrganic">0</strong><span class="muted">Itens na fila orgânica</span></div>
-<div class="stat"><strong id="mAds">0</strong><span class="muted">Campanhas aguardando aprovação</span></div>
-</div></div><div class="notice">Os cliques registrados aqui são locais e não equivalem aos relatórios do marketplace. Vendas, pedidos, comissão e gasto em anúncios devem ser importados ou conferidos nas plataformas oficiais. Não há integração de métricas ativa ainda.</div></section>
-<section id="settings" class="page">
-<h1>Ajustes e dados</h1><div class="card"><h2>Mercados prioritários</h2><select id="region"><option>Brasil e exterior</option><option>Somente Brasil</option><option>Brasil e Portugal</option><option>Brasil e Estados Unidos</option></select><p class="muted">A disponibilidade de afiliados, entrega e meios de pagamento deve ser validada por país e programa.</p></div>
-<div class="card"><h2>Backup dos dados</h2><p class="muted">Exporte uma cópia JSON para guardar seus cadastros. Os dados atuais ficam neste navegador.</p><button class="btn" onclick="exportData()">Exportar backup</button><label>Importar backup JSON</label><input id="importFile" type="file" accept="application/json"><button class="btn secondary" onclick="importData()">Importar backup</button></div>
-<div class="card"><h2>Privacidade e segurança</h2><p class="muted">Não salve senhas, tokens, chaves de API ou códigos de autenticação neste painel ou no GitHub. Futuras integrações deverão usar armazenamento seguro no servidor e permissões oficiais.</p><button class="btn danger" onclick="clearLocal()">Apagar dados deste navegador</button></div>
-</section>
-</main><footer>MANÁ STORE IA • Gestão de afiliados • Ferramenta em desenvolvimento</footer>
+
+</main>
+
+<nav>
+  <button class="active" onclick="openPage('inicio',this)">🏠 Início</button>
+  <button onclick="openPage('produtos',this)">🛍️ Produtos</button>
+  <button onclick="openPage('resultados',this)">📊 Resultados</button>
+  <button onclick="openPage('config',this)">⚙️ Ajustes</button>
+</nav>
+
+<footer>MANÁ STORE IA • Catálogo de afiliados</footer>
+
 <script>
-const MASTER_KEY='manaMasterEnabled';
-function masterEnabled(){return read(MASTER_KEY,true)!==false}
-function renderMaster(){const on=masterEnabled(),box=$('masterControl'),btn=$('masterButton');box.classList.toggle('paused',!on);btn.classList.toggle('off',!on);btn.textContent=on?'● LIGADO':'Ⅱ DESLIGADO';btn.setAttribute('aria-pressed',String(on));$('masterStatus').textContent=on?'Modo operacional ligado neste navegador. Integrações externas ainda precisam ser conectadas e autorizadas.':'Modo operacional pausado neste navegador. Nenhuma automação futura integrada deverá ser iniciada.'}
-function toggleMaster(){const next=!masterEnabled();if(!confirm(next?'Ligar o modo operacional da MANÁ STORE IA? Isso não autoriza anúncios pagos.':'Desligar o modo operacional e pausar as funções automáticas?'))return;write(MASTER_KEY,next);renderMaster()}
-const $=id=>document.getElementById(id);
-const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
-const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
-const products=()=>read('manaProducts',[]);
-const research=()=>read('manaResearch',[]);
-const organic=()=>read('manaOrganicQueue',[]);
-const ads=()=>read('manaAdRequests',[]);
-function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));refresh();window.scrollTo(0,0)}
-document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function urlOK(v){if(!v)return '';try{let u=new URL(v);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}}
-function resetProduct(){['editId','pName','pPrice','pCommission','pPublic','pAffiliate','pImage','pNotes'].forEach(id=>$(id).value='');$('pConfirmed').checked=false;$('formTitle').textContent='Cadastrar produto'}
-function saveProduct(){let name=$('pName').value.trim(),affiliate=urlOK($('pAffiliate').value.trim()),pub=$('pPublic').value.trim(),img=$('pImage').value.trim();if(!name||!affiliate){alert('Informe o nome e um link de afiliado válido.');return}if((pub&&!urlOK(pub))||(img&&!urlOK(img))){alert('Confira os endereços URL.');return}let list=products(),id=$('editId').value||('p-'+Date.now());let old=list.find(p=>p.id===id);let item={...(old||{}),id,name,market:$('pMarket').value,targetCountry:$('pCountry').value,language:$('pLanguage').value,currency:$('pCurrency').value,price:$('pPrice').value?Number($('pPrice').value):null,commissionRate:$('pCommission').value?Number($('pCommission').value):null,publicUrl:urlOK(pub),affiliateUrl:affiliate,photo:urlOK(img),affiliateConfirmed:$('pConfirmed').checked,notes:$('pNotes').value.trim(),status:$('pStatus').value,updatedAt:new Date().toISOString()};write('manaProducts',old?list.map(p=>p.id===id?item:p):[item,...list]);resetProduct();refresh();alert('Produto salvo neste navegador.')}
-function editProduct(id){let p=products().find(x=>x.id===id);if(!p)return;$('editId').value=p.id;$('pName').value=p.name;$('pMarket').value=p.market;$('pCountry').value=p.targetCountry||'BR';$('pLanguage').value=p.language||'pt-BR';$('pCurrency').value=p.currency||'BRL';$('pPrice').value=p.price??'';$('pCommission').value=p.commissionRate??'';$('pPublic').value=p.publicUrl||'';$('pAffiliate').value=p.affiliateUrl||p.affiliate||'';$('pImage').value=p.photo||'';$('pConfirmed').checked=!!p.affiliateConfirmed;$('pStatus').value=p.status||'draft';$('pNotes').value=p.notes||'';$('formTitle').textContent='Editar produto';go('products');window.scrollTo(0,0)}
-function deleteProduct(id){if(!confirm('Excluir este produto?'))return;write('manaProducts',products().filter(p=>p.id!==id));refresh()}
-function clickProduct(id){let c=read('manaClicks',{});c[id]=(c[id]||0)+1;write('manaClicks',c);refresh()}
-function renderProducts(){let q=$('productSearch').value.toLowerCase(),list=products().filter(p=>(p.name+' '+p.market+' '+p.targetCountry).toLowerCase().includes(q));$('productList').innerHTML=list.length?list.map(p=>'<div class="row">'+(p.photo?'<img src="'+esc(p.photo)+'" alt="" style="width:72px;height:72px;object-fit:cover;border-radius:8px">':'')+'<div class="rowbody"><div class="productname">'+esc(p.name)+'</div><span class="pill">'+esc(p.market)+'</span><span class="pill">'+esc(p.targetCountry||'País não definido')+'</span><span class="pill">'+esc(p.status||'draft')+'</span><div class="small">'+esc(p.currency||'')+' '+esc(p.price??'Preço não informado')+' • Link afiliado: '+(p.affiliateConfirmed?'confirmado':'não confirmado')+'</div><div class="actions"><a class="btn" href="'+esc(p.affiliateUrl||p.affiliate||'#')+'" target="_blank" rel="noopener" onclick="clickProduct(\''+esc(p.id)+'\')">Abrir link</a><button class="btn secondary" onclick="editProduct(\''+esc(p.id)+'\')">Editar</button><button class="btn danger" onclick="deleteProduct(\''+esc(p.id)+'\')">Excluir</button></div></div></div>').join(''):'<div class="empty">Nenhum produto encontrado.</div>';let opts='<option value="">Sem produto vinculado</option>'+products().map(p=>'<option value="'+esc(p.id)+'">'+esc(p.name)+'</option>').join('');$('oProduct').innerHTML=opts;$('aProduct').innerHTML=opts}
-function saveResearch(){let name=$('rName').value.trim(),source=urlOK($('rSource').value.trim());if(!name||!source){alert('Informe produto/nicho e fonte válida.');return}let list=research();list.unshift({id:'r-'+Date.now(),name,country:$('rCountry').value,potential:$('rPotential').value,confidence:$('rConfidence').value,source,date:$('rDate').value||new Date().toISOString().slice(0,10),notes:$('rNotes').value.trim()});write('manaResearch',list);['rName','rSource','rDate','rNotes'].forEach(id=>$(id).value='');refresh()}
-function renderResearch(){$('researchList').innerHTML=research().length?research().map(r=>'<div class="row"><div class="rowbody"><b>'+esc(r.name)+'</b><div class="small">'+esc(r.country)+' • Potencial: '+esc(r.potential)+' • Confiança: '+esc(r.confidence)+' • '+esc(r.date)+'</div><p class="muted">'+esc(r.notes)+'</p><a href="'+esc(r.source)+'" target="_blank" rel="noopener">Abrir fonte</a> <button class="btn danger" onclick="removeItem(\'manaResearch\',\''+esc(r.id)+'\')">Excluir</button></div></div>').join(''):'<div class="empty">Nenhuma oportunidade registrada.</div>'}
-function removeItem(key,id){if(!confirm('Excluir este registro?'))return;write(key,read(key,[]).filter(x=>x.id!==id));refresh()}
-function queueOrganic(){let content=$('oContent').value.trim();if(!content){alert('Escreva o conteúdo antes de adicionar à fila.');return}let p=products().find(x=>x.id===$('oProduct').value);let list=organic();list.unshift({id:'o-'+Date.now(),channel:$('oChannel').value,content,productId:p?.id||'',productName:p?.name||'',status:'Aguardando integração e autorização',createdAt:new Date().toISOString()});write('manaOrganicQueue',list);$('oContent').value='';refresh();alert('Adicionado à fila. Nada foi publicado.')}
-function requestAd(){let budget=$('aBudget').value.trim(),period=$('aPeriod').value.trim(),audience=$('aAudience').value.trim(),creative=$('aCreative').value.trim(),destination=$('aDestination').value.trim();if(!budget||!period||!audience||!creative||!urlOK(destination)){alert('Preencha orçamento, período, público, criativo e URL válida.');return}let p=products().find(x=>x.id===$('aProduct').value);let list=ads();list.unshift({id:'a-'+Date.now(),platform:$('aPlatform').value,productName:p?.name||'Não vinculado',budget,period,audience,creative,destination,status:'Aguardando aprovação explícita',createdAt:new Date().toISOString()});write('manaAdRequests',list);['aBudget','aPeriod','aAudience','aCreative','aDestination'].forEach(id=>$(id).value='');refresh();alert('Solicitação registrada. Nenhum anúncio foi criado ou cobrado.')}
-function renderQueues(){$('organicList').innerHTML=organic().length?organic().map(o=>'<div class="row"><div class="rowbody"><b>'+esc(o.channel)+' — '+esc(o.productName||'Conteúdo geral')+'</b><span class="pill">'+esc(o.status)+'</span><p class="muted">'+esc(o.content)+'</p><button class="btn danger" onclick="removeItem(\'manaOrganicQueue\',\''+esc(o.id)+'\')">Remover da fila</button></div></div>').join(''):'<div class="empty">Fila vazia.</div>';$('adsList').innerHTML=ads().length?ads().map(a=>'<div class="row"><div class="rowbody"><b>'+esc(a.platform)+' — '+esc(a.productName)+'</b><span class="pill">'+esc(a.status)+'</span><p class="muted">Orçamento: '+esc(a.budget)+' • Período: '+esc(a.period)+'</p><p class="muted">Público: '+esc(a.audience)+'</p><p class="muted">Criativo: '+esc(a.creative)+'</p><a href="'+esc(a.destination)+'" target="_blank" rel="noopener">Ver destino</a><div class="actions"><button class="btn secondary" onclick="approveAd(\''+esc(a.id)+'\')">Aprovar solicitação</button><button class="btn danger" onclick="removeItem(\'manaAdRequests\',\''+esc(a.id)+'\')">Cancelar</button></div><p class="small">Aprovar aqui apenas registra sua aprovação no painel; não cria nem ativa anúncios. A execução exigirá integração e confirmação final.</p></div></div>').join(''):'<div class="empty">Nenhuma solicitação.</div>'}
-function approveAd(id){let list=ads(),a=list.find(x=>x.id===id);if(!a)return;if(!confirm('Você aprova esta solicitação com os dados exibidos? Isso ainda não cria nem ativa o anúncio.'))return;a.status='Aprovado pelo usuário — execução ainda não realizada';write('manaAdRequests',list);refresh()}
-function refresh(){renderMaster();let p=products(),r=research(),o=organic(),a=ads(),c=read('manaClicks',{}),clicks=Object.values(c).reduce((s,v)=>s+Number(v||0),0);$('statProducts').textContent=p.length;$('statResearch').textContent=r.length;$('statPending').textContent=o.length+a.filter(x=>x.status==='Aguardando aprovação explícita').length;$('statClicks').textContent=clicks;$('mProducts').textContent=p.length;$('mClicks').textContent=clicks;$('mOrganic').textContent=o.length;$('mAds').textContent=a.length;renderProducts();renderResearch();renderQueues()}
-function exportData(){let data={products:products(),research:research(),organic:organic(),ads:ads(),clicks:read('manaClicks',{}),exportedAt:new Date().toISOString()};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='mana-store-backup.json';a.click();URL.revokeObjectURL(a.href)}
-function importData(){let f=$('importFile').files[0];if(!f){alert('Escolha um arquivo JSON.');return}let reader=new FileReader();reader.onload=()=>{try{let d=JSON.parse(reader.result);if(!confirm('Importar e substituir os dados locais deste painel?'))return;write('manaProducts',Array.isArray(d.products)?d.products:[]);write('manaResearch',Array.isArray(d.research)?d.research:[]);write('manaOrganicQueue',Array.isArray(d.organic)?d.organic:[]);write('manaAdRequests',Array.isArray(d.ads)?d.ads:[]);write('manaClicks',d.clicks&&typeof d.clicks==='object'?d.clicks:{});refresh();alert('Backup importado.')}catch{alert('Arquivo JSON inválido.')}};reader.readAsText(f)}
-function clearLocal(){if(!confirm('Apagar produtos, pesquisas, filas e cliques deste navegador? Exporte um backup antes se quiser guardar os dados.'))return;['manaProducts','manaResearch','manaOrganicQueue','manaAdRequests','manaClicks'].forEach(k=>localStorage.removeItem(k));refresh()}
-refresh();
+function readData(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function saveData(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function safeUrl(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol === "https:" || url.protocol === "http:") {
+      return url.href;
+    }
+  } catch (error) {}
+  return "";
+}
+
+function openPage(id, button) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll("nav button").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  if (button) button.classList.add("active");
+
+  updateStats();
+  if (id === "produtos") renderProducts();
+}
+
+function saveProduct() {
+  const name = document.getElementById("name").value.trim();
+  const market = document.getElementById("market").value;
+  const price = document.getElementById("price").value.trim();
+  const photoInput = document.getElementById("photo").value.trim();
+  const affiliateInput = document.getElementById("affiliate").value.trim();
+
+  const affiliate = safeUrl(affiliateInput);
+  const photo = photoInput ? safeUrl(photoInput) : "";
+
+  if (!name) {
+    alert("Digite o nome do produto.");
+    return;
+  }
+
+  if (!affiliate) {
+    alert("Informe um link de afiliado válido.");
+    return;
+  }
+
+  if (photoInput && !photo) {
+    alert("Confira o endereço da foto.");
+    return;
+  }
+
+  const products = readData("manaProducts", []);
+
+  products.push({
+    id: Date.now().toString() + Math.random().toString(16).slice(2),
+    name,
+    market,
+    price,
+    photo,
+    affiliate
+  });
+
+  saveData("manaProducts", products);
+
+  document.getElementById("name").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("photo").value = "";
+  document.getElementById("affiliate").value = "";
+
+  renderProducts();
+  updateStats();
+
+  alert("Produto cadastrado com sucesso!");
+}
+
+function renderProducts() {
+  const products = readData("manaProducts", []);
+  const clicks = readData("manaClicks", {});
+  const list = document.getElementById("productList");
+
+  list.innerHTML = "";
+
+  if (!products.length) {
+    list.textContent = "Nenhum produto cadastrado ainda.";
+    list.className = "muted";
+    return;
+  }
+
+  list.className = "";
+
+  products.forEach(product => {
+    const row = document.createElement("div");
+    row.className = "product";
+
+    const img = document.createElement("img");
+    img.alt = product.name;
+
+    if (product.photo) {
+      img.src = product.photo;
+      img.onerror = () => {
+        img.style.display = "none";
+      };
+    } else {
+      img.style.display = "none";
+    }
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+
+    const title = document.createElement("div");
+    title.className = "product-name";
+    title.textContent = product.name;
+
+    const market = document.createElement("div");
+    market.className = "muted";
+    market.textContent = product.market;
+
+    info.append(title, market);
+
+    if (product.price) {
+      const price = document.createElement("div");
+      price.className = "price";
+      price.textContent = "R$ " + product.price;
+      info.appendChild(price);
+    }
+
+    const count = document.createElement("div");
+    count.className = "muted";
+    count.textContent = (clicks[product.id] || 0) + " clique(s)";
+    info.appendChild(count);
+
+    const buy = document.createElement("a");
+    buy.className = "buy";
+    buy.href = product.affiliate;
+    buy.target = "_blank";
+    buy.rel = "noopener noreferrer";
+    buy.textContent = "COMPRAR";
+
+    buy.addEventListener("click", () => {
+      const current = readData("manaClicks", {});
+      current[product.id] = (current[product.id] || 0) + 1;
+      saveData("manaClicks", current);
+      updateStats();
+      count.textContent = current[product.id] + " clique(s)";
+    });
+
+    info.appendChild(buy);
+
+    const remove = document.createElement("button");
+    remove.className = "secondary";
+    remove.textContent = "Excluir";
+    remove.style.display = "block";
+    remove.style.marginTop = "8px";
+
+    remove.addEventListener("click", () => {
+      if (!confirm("Deseja excluir este produto?")) return;
+
+      const updated = readData("manaProducts", [])
+        .filter(item => item.id !== product.id);
+
+      saveData("manaProducts", updated);
+      renderProducts();
+      updateStats();
+    });
+
+    info.appendChild(remove);
+    row.append(img, info);
+    list.appendChild(row);
+  });
+}
+
+function updateStats() {
+  const products = readData("manaProducts", []);
+  const clicks = readData("manaClicks", {});
+
+  const totalClicks = Object.values(clicks)
+    .reduce((sum, value) => sum + Number(value || 0), 0);
+
+  document.getElementById("homeProducts").textContent = products.length;
+  document.getElementById("homeClicks").textContent = totalClicks;
+  document.getElementById("resultProducts").textContent = products.length;
+  document.getElementById("resultClicks").textContent = totalClicks;
+}
+
+renderProducts();
+updateStats();
 </script>
-</body></html>
+
+</body>
+</html>
