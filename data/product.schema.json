@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mana-store-ia.example/schemas/product.schema.json",
+  "title": "MANÁ STORE IA Product",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "marketplace", "targetCountry", "language", "currency", "publicUrl", "affiliateUrl", "affiliateConfirmed", "status", "evidence", "updatedAt"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "marketplace": {"type": "string", "minLength": 1},
+    "targetCountry": {"type": "string", "minLength": 2},
+    "language": {"type": "string", "minLength": 2},
+    "currency": {"type": "string", "minLength": 3, "maxLength": 3},
+    "publicUrl": {"type": "string", "format": "uri"},
+    "affiliateUrl": {"type": "string", "format": "uri"},
+    "affiliateConfirmed": {"type": "boolean"},
+    "price": {"type": ["number", "null"], "minimum": 0},
+    "commissionRate": {"type": ["number", "null"], "minimum": 0},
+    "rating": {"type": ["number", "null"], "minimum": 0, "maximum": 5},
+    "reviewCount": {"type": ["integer", "null"], "minimum": 0},
+    "commercialPotential": {"type": ["string", "null"], "enum": ["low", "medium", "high", null]},
+    "evidenceConfidence": {"type": ["string", "null"], "enum": ["low", "medium", "high", null]},
+    "status": {"type": "string", "enum": ["draft", "validating", "content_approved", "awaiting_publication_approval", "published", "paused", "rejected"]},
+    "evidence": {"type": "array", "items": {"type": "object", "required": ["url", "checkedAt"], "properties": {"url": {"type": "string", "format": "uri"}, "checkedAt": {"type": "string", "format": "date-time"}, "note": {"type": "string"}}, "additionalProperties": false}},
+    "risks": {"type": "array", "items": {"type": "string"}},
+    "updatedAt": {"type": "string", "format": "date-time"}
+  }
+}
