@@ -1,27 +1,38 @@
 # MANÁ STORE IA
 
-Central de inteligência comercial para organizar produtos afiliados, pesquisar oportunidades e preparar campanhas para o Brasil e mercados internacionais.
+International-first digital product studio for the creator's own low-ticket digital products, focused on **Spanish and English** markets.
 
-## Estado atual
+## Current application
 
-A aplicação existente é uma vitrine HTML estática. Cadastro e cliques usam `localStorage` do navegador, portanto os dados não são sincronizados entre aparelhos e cliques locais não representam vendas ou comissões oficiais.
+- Main entry point: `/central-pro.html` (the root URL redirects here).
+- Product brief and draft manuscript generator in Spanish and English.
+- Opportunity radar reader backed by `/api/opportunities`.
+- Audience and promotion package generator.
+- Local library and JSON backup/export.
+- No affiliate-product or physical-product storefront in the primary flow.
 
-## Regras de operação
+## Important limitations
 
-- Priorizar ferramentas gratuitas e integrações oficiais.
-- Nunca armazenar senhas, tokens ou chaves no repositório.
-- Publicação orgânica automática somente em canais conectados, com permissões válidas e conteúdo dentro das regras da plataforma.
-- Anúncios pagos ficam bloqueados até aprovação explícita do responsável para cada campanha, incluindo orçamento, período, público e criativo.
-- Não afirmar que uma venda, comissão, publicação ou integração ocorreu sem confirmação da plataforma.
-- Separar links públicos de links pessoais rastreados de afiliado.
-- Para cada mercado, verificar elegibilidade do programa, entrega, idioma, moeda e condições locais.
+- The free manuscript engine uses local templates and rules, not a connected large language model. It creates first drafts, not fully researched, expert-reviewed books.
+- RSS/news signals are exploratory evidence, not proof of buyer demand.
+- The library currently uses browser local storage; data is device/browser-specific until exported.
+- The current app prepares promotional materials but does not publish to social networks, run paid ads, create checkout products, process payments, or confirm sales.
+- Social publishing and sales reporting require official APIs, secure account authorization, and testing.
+- Never put passwords, API keys, or service-role secrets in browser code or this repository.
 
-## Etapas
+## Environment
 
-1. Fundação, documentação e modelo de dados.
-2. Painel de produtos com mercados, idiomas, moedas e status de validação.
-3. Inteligência de oportunidades com fontes, datas, riscos e confiança da evidência.
-4. Fila de aprovação e integrações oficiais de publicação.
-5. Métricas oficiais de cliques, pedidos, vendas e comissões.
+The opportunities endpoint requires server-side environment variables:
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
 
-Consulte `docs/ROADMAP.md` e `docs/OPERACAO.md`.
+The scheduled research job also requires the scheduler secret configured for its endpoint. Check the deployment environment before relying on scheduled runs.
+
+## Launch checklist
+
+1. Deploy the latest `main` branch to Vercel.
+2. Confirm `/central-pro.html` loads on Android.
+3. Confirm `/api/opportunities` returns data (or a clear configuration error).
+4. Generate a Spanish draft and an English draft; export both.
+5. Save a product and a promotion package, then test JSON backup/restore.
+6. Connect official checkout and social integrations only after the account owner authorizes them.
