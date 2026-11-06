@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111111">
+<title>MANÁ STORE IA — Estúdio Digital</title>
+<style>
+:root{--bg:#0c0c0f;--panel:#18181d;--panel2:#222229;--gold:#e7b943;--muted:#aaa;--line:#393941;--ok:#7bd6a4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f7f5ef;font:15px Arial,sans-serif}
+header{padding:20px 18px;background:linear-gradient(130deg,#302515,#111);border-bottom:1px solid #57451f;position:sticky;top:0;z-index:5}
+.brand{color:var(--gold);font-size:22px;font-weight:900;letter-spacing:1.5px}.sub{color:#c9c4b8;font-size:12px;margin-top:5px}
+main{max-width:1000px;margin:auto;padding:18px 14px 100px}.tabs{display:flex;gap:8px;overflow:auto;padding:8px 0 14px}
+.tabs button,.btn{border:1px solid var(--line);background:var(--panel2);color:#fff;padding:11px 14px;border-radius:9px;white-space:nowrap}
+.tabs button.active,.btn.primary{background:var(--gold);color:#17130a;border-color:var(--gold);font-weight:700}
+.page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+h1{font-size:25px;margin:10px 0}h2{font-size:18px;margin:0 0 12px}h3{font-size:15px;margin:0 0 8px}
+.muted{color:var(--muted);font-size:13px;line-height:1.55}.metric{font-size:27px;color:var(--gold);font-weight:800}
+label{display:block;color:#d6d2c8;font-size:13px;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #484852;background:#101014;color:white;font:15px Arial}
+textarea{min-height:90px;resize:vertical}.btn{cursor:pointer;margin:5px 5px 0 0}.btn.primary{background:var(--gold)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.notice{border-left:3px solid var(--gold);background:#292316;color:#eadfbe;padding:12px;border-radius:8px;font-size:13px;line-height:1.5}
+.output{white-space:pre-wrap;background:#101014;border:1px solid var(--line);border-radius:9px;padding:14px;line-height:1.55;font-size:13px;max-height:500px;overflow:auto}
+.pill{display:inline-block;border:1px solid #5a4b2a;color:var(--gold);border-radius:30px;padding:4px 9px;font-size:11px;margin:2px}
+.item{border-bottom:1px solid var(--line);padding:12px 0}.item:last-child{border:0}
+footer{text-align:center;color:#777;font-size:11px;padding:20px}
+@media(min-width:720px){.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
+</style>
+</head>
+<body>
+<header><div class="brand">👑 MANÁ STORE IA</div><div class="sub">ESTÚDIO DE PRODUTOS DIGITAIS • OFERTAS • FUNIS • CONTEÚDO</div></header>
+<main>
+<div class="notice"><b>Versão de trabalho:</b> este estúdio organiza e prepara materiais no navegador. A pesquisa automática, geração por IA, sincronização entre aparelhos, publicação e vendas só funcionarão quando as integrações correspondentes forem conectadas e testadas. Nada é publicado nem anunciado automaticamente nesta versão.</div>
+<div class="tabs">
+<button class="active" data-page="home">Visão geral</button><button data-page="create">Criar produto</button><button data-page="assets">Pacote de venda</button><button data-page="library">Biblioteca</button><button data-page="settings">Integrações</button>
+</div>
+<section id="home" class="page active">
+<h1>Central de produtos digitais</h1><p class="muted">Um fluxo de trabalho inspirado em oferta, geração de demanda, funis e melhoria contínua.</p>
+<div class="grid">
+<div class="card"><div class="metric" id="countProducts">0</div><div class="muted">Projetos salvos neste aparelho</div></div>
+<div class="card"><div class="metric" id="countReady">0</div><div class="muted">Pacotes de venda preparados</div></div>
+<div class="card"><div class="metric">0</div><div class="muted">Vendas confirmadas nesta versão — sem conexão oficial</div></div>
+</div>
+<div class="card"><h2>O método MANÁ</h2>
+<div class="item"><span class="pill">01 • MERCADO</span><b> Encontrar uma dor real</b><div class="muted">Pesquisar dúvidas, avaliações, tendências e linguagem do público. Toda afirmação de mercado precisa de fonte e data.</div></div>
+<div class="item"><span class="pill">02 • OFERTA</span><b> Criar uma solução útil</b><div class="muted">Público específico, resultado realista, conteúdo prático, diferenciais e preço testável.</div></div>
+<div class="item"><span class="pill">03 • AQUISIÇÃO</span><b> Atrair interessados</b><div class="muted">Conteúdo orgânico, parcerias, afiliados e anúncios aprovados pelo responsável.</div></div>
+<div class="item"><span class="pill">04 • CONVERSÃO</span><b> Página e checkout</b><div class="muted">Página clara, prova legítima, perguntas frequentes, checkout e entrega digital.</div></div>
+<div class="item"><span class="pill">05 • OTIMIZAÇÃO</span><b> Medir e melhorar</b><div class="muted">Cliques, conversão, vendas oficiais, reembolsos e lucro por canal.</div></div>
+</div>
+<button class="btn primary" onclick="go('create')">+ Começar um produto</button>
+</section>
+<section id="create" class="page">
+<h1>Fábrica de produtos</h1><p class="muted">Preencha o briefing. O estúdio monta um pacote inicial de estratégia e prompts de produção para revisar.</p>
+<div class="two">
+<div class="card">
+<label for="name">Nome provisório do projeto</label><input id="name" placeholder="Ex.: Rotina leve para mães sobrecarregadas">
+<label for="market">Mercado</label><select id="market"><option>Brasil</option><option>Países de língua espanhola</option><option>Portugal</option><option>Estados Unidos</option><option>Mercado internacional — validar país</option></select>
+<label for="language">Idioma</label><select id="language"><option>Português brasileiro</option><option>Español neutro</option><option>English</option><option>Português europeu</option></select>
+<label for="niche">Nicho</label><input id="niche" placeholder="Ex.: organização familiar, educação, carreira">
+<label for="audience">Público específico</label><textarea id="audience" placeholder="Quem é a pessoa? Em que situação está?"></textarea>
+<label for="pain">Problema principal que o produto resolve</label><textarea id="pain" placeholder="Descreva uma dificuldade concreta, sem exageros."></textarea>
+<label for="result">Resultado realista que o material ajuda a alcançar</label><textarea id="result" placeholder="O que a pessoa conseguirá fazer, entender ou organizar?"></textarea>
+<label for="format">Formato</label><select id="format"><option>E-book PDF</option><option>Guia + checklist</option><option>Planner / templates</option><option>Mini curso</option><option>Pacote de materiais</option></select>
+<label for="price">Preço inicial para testar (opcional)</label><input id="price" placeholder="Ex.: R$ 19,90">
+<label for="proof">Fontes ou evidências já encontradas (opcional)</label><textarea id="proof" placeholder="Cole URLs, dúvidas reais, pesquisas ou observações."></textarea>
+<button class="btn primary" onclick="generate()">GERAR ESTRATÉGIA E PACOTE</button>
+<button class="btn" onclick="clearForm()">Limpar</button>
+</div>
+<div class="card"><h2>Critérios de qualidade</h2>
+<p class="muted">O projeto só deve avançar quando passar por estas verificações:</p>
+<div class="item">✓ Dor específica e demonstrável</div><div class="item">✓ Público que pode ser alcançado</div><div class="item">✓ Conteúdo original e útil</div><div class="item">✓ Promessa honesta e verificável</div><div class="item">✓ Direitos autorais e fontes respeitados</div><div class="item">✓ Página, checkout e entrega testados</div><div class="item">✓ Idioma, moeda e regras do país conferidos</div>
+<div class="notice">Não usar depoimentos inventados, escassez falsa, renda garantida ou alegações médicas/financeiras sem respaldo.</div>
+</div>
+</div>
+</section>
+<section id="assets" class="page">
+<h1>Pacote de venda</h1><p class="muted">Selecione um projeto salvo para consultar e copiar os materiais preparados.</p>
+<div class="card"><label for="assetSelect">Projeto</label><select id="assetSelect"></select><div id="assetOutput" class="output">Crie um projeto na aba “Criar produto” para montar o pacote.</div><button class="btn primary" onclick="copyAssets()">COPIAR PACOTE</button><button class="btn" onclick="downloadAssets()">EXPORTAR .TXT</button></div>
+</section>
+<section id="library" class="page">
+<h1>Biblioteca de projetos</h1><div class="card"><div id="projectList" class="muted">Nenhum projeto salvo neste aparelho.</div></div>
+</section>
+<section id="settings" class="page">
+<h1>Integrações e operação</h1>
+<div class="card"><h2>Estado desta versão</h2>
+<div class="item"><b>Armazenamento:</b> localStorage deste navegador/aparelho</div>
+<div class="item"><b>Pesquisa externa automática:</b> ainda não conectada</div>
+<div class="item"><b>Modelo de IA por API:</b> ainda não conectado</div>
+<div class="item"><b>Kiwify / Hotmart:</b> sem conexão de vendas nesta tela</div>
+<div class="item"><b>Redes sociais:</b> sem publicação conectada</div>
+<div class="item"><b>Vendas e comissões:</b> precisam de dados oficiais da plataforma</div>
+</div>
+<div class="card"><h2>Próximas conexões necessárias</h2><ol class="muted"><li>Banco de dados seguro para sincronizar projetos.</li><li>Fonte de pesquisa com URLs, data e trechos verificáveis.</li><li>Provedor de IA por servidor, com limite e proteção de chave.</li><li>Integração autorizada com checkout e webhooks de compra.</li><li>Conector de publicação com aprovação antes de postar.</li><li>Painel de métricas com dados oficiais.</li></ol></div>
+</section>
+<footer>MANÁ STORE IA • Ferramenta de preparação • Não garante vendas ou resultados</footer>
+</main>
+<script>
+const KEY='mana_digital_projects_v1';
+let projects=load();
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
+function persist(){localStorage.setItem(KEY,JSON.stringify(projects));refresh()}
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='assets')refreshAssets();if(id==='library')refreshLibrary();window.scrollTo(0,0)}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+function val(id){return document.getElementById(id).value.trim()}
+function clearForm(){['name','niche','audience','pain','result','price','proof'].forEach(id=>document.getElementById(id).value='')}
+function generate(){
+ const p={id:Date.now(),name:val('name'),market:val('market'),language:val('language'),niche:val('niche'),audience:val('audience'),pain:val('pain'),result:val('result'),format:val('format'),price:val('price')||'A testar com pesquisa',proof:val('proof'),created:new Date().toISOString()};
+ if(!p.name||!p.niche||!p.audience||!p.pain||!p.result){alert('Preencha nome, nicho, público, problema e resultado realista.');return}
+ p.pack=makePack(p);projects.unshift(p);persist();document.getElementById('assetSelect').value=String(p.id);refreshAssets();go('assets');
+}
+function makePack(p){
+ const promptResearch='Atue como pesquisador de mercado para produtos digitais. Investigue o nicho: '+p.niche+'. Público: '+p.audience+'. Problema: '+p.pain+'. Mercado: '+p.market+'. Idioma: '+p.language+'. Traga perguntas reais, sinais de demanda, objeções, concorrentes e fontes clicáveis com data. Separe fatos, hipóteses e recomendações. Não invente números, procura, preço ou concorrência.';
+ const promptProduct='Atue como editor e especialista em produtos digitais. Crie um '+p.format+' original para '+p.audience+'. Problema: '+p.pain+'. Resultado realista: '+p.result+'. Nicho: '+p.niche+'. Idioma: '+p.language+'. Entregue sumário detalhado, conteúdo didático completo por capítulo, exercícios, checklist, exemplos, conclusão e referências confiáveis quando necessárias. Não copie obras nem invente credenciais ou resultados.';
+ const promptOffer='Atue como estrategista de ofertas. Monte uma oferta ética para o produto '+p.name+'. Público: '+p.audience+'. Dor: '+p.pain+'. Resultado: '+p.result+'. Crie posicionamento, mecanismo/abordagem, diferenciais reais, entregáveis, objeções e respostas, garantia apenas se o vendedor puder honrá-la, FAQ e sugestão de preço baseada em comparação verificável. Evite urgência falsa e promessas absolutas.';
+ const promptFunnel='Crie uma página de vendas para '+p.name+' em '+p.language+'. Inclua headline específica, identificação do problema, explicação do material, para quem é/não é, conteúdo, benefícios sem exagero, perguntas frequentes, transparência sobre formato digital e CTA para checkout. Não invente depoimentos, estatísticas ou certificações.';
+ const promptContent='Crie 10 roteiros curtos de vídeo vertical sem mostrar o rosto, 10 legendas, 5 carrosséis e 5 mensagens de e-mail para divulgar '+p.name+' a '+p.audience+'. Use ganchos variados, demonstrações e educação. Identifique claramente a oferta comercial. Não use manipulação, afirmações sem fonte ou garantia de resultado.';
+ const checklist='CHECKLIST ANTES DE VENDER\n[ ] Pesquisa com fontes e datas conferidas\n[ ] Conteúdo original revisado\n[ ] Direitos de imagens/fontes verificados\n[ ] Promessa e preço aprovados\n[ ] Página de vendas revisada\n[ ] Checkout testado em celular\n[ ] Entrega automática testada como comprador\n[ ] Política de reembolso e suporte informados\n[ ] Pixel/eventos testados, se usados\n[ ] Campanha revisada e aprovada antes de publicar';
+ return 'MANÁ STORE IA — PACOTE DE PRODUÇÃO\n\nPROJETO: '+p.name+'\nMERCADO: '+p.market+' | IDIOMA: '+p.language+'\nNICHO: '+p.niche+'\nPÚBLICO: '+p.audience+'\nPROBLEMA: '+p.pain+'\nRESULTADO REALISTA: '+p.result+'\nFORMATO: '+p.format+'\nPREÇO INICIAL: '+p.price+'\n\n1. PESQUISA DE MERCADO — PROMPT\n'+promptResearch+'\n\n2. PRODUÇÃO DO PRODUTO — PROMPT\n'+promptProduct+'\n\n3. OFERTA — PROMPT\n'+promptOffer+'\n\n4. PÁGINA DE VENDAS — PROMPT\n'+promptFunnel+'\n\n5. CONTEÚDO E CRIATIVOS — PROMPT\n'+promptContent+'\n\n6. CHECKLIST DE PUBLICAÇÃO\n'+checklist+'\n\nFONTES/EVIDÊNCIAS INFORMADAS PELO RESPONSÁVEL:\n'+(p.proof||'Nenhuma informada. Pesquisa ainda pendente.')+'\n\nNOTA: este pacote contém estratégia e instruções de produção. Não representa pesquisa executada, e-book final, integração ou venda confirmada.';
+}
+function refresh(){document.getElementById('countProducts').textContent=projects.length;document.getElementById('countReady').textContent=projects.filter(p=>p.pack).length;refreshAssets();refreshLibrary()}
+function refreshAssets(){const s=document.getElementById('assetSelect');if(!s)return;const old=s.value;s.innerHTML=projects.map(p=>'<option value="'+p.id+'">'+esc(p.name)+'</option>').join('');if(projects.some(p=>String(p.id)===old))s.value=old;showAssets()}
+function showAssets(){const id=Number(document.getElementById('assetSelect').value);const p=projects.find(x=>x.id===id);document.getElementById('assetOutput').textContent=p?p.pack:'Crie um projeto na aba “Criar produto” para montar o pacote.'}
+document.getElementById('assetSelect').addEventListener('change',showAssets);
+function refreshLibrary(){const el=document.getElementById('projectList');el.innerHTML=projects.length?projects.map(p=>'<div class="item"><b>'+esc(p.name)+'</b><div class="muted">'+esc(p.niche)+' • '+esc(p.market)+' • '+new Date(p.created).toLocaleDateString('pt-BR')+'</div><button class="btn" onclick="openProject('+p.id+')">Abrir pacote</button><button class="btn" onclick="removeProject('+p.id+')">Excluir</button></div>').join(''):'Nenhum projeto salvo neste aparelho.'}
+function openProject(id){document.getElementById('assetSelect').value=String(id);go('assets');showAssets()}
+function removeProject(id){if(confirm('Excluir este projeto deste aparelho?')){projects=projects.filter(p=>p.id!==id);persist()}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function copyAssets(){const t=document.getElementById('assetOutput').textContent;if(!t.startsWith('Crie um projeto'))navigator.clipboard?.writeText(t).then(()=>alert('Pacote copiado.')).catch(()=>alert('Não foi possível copiar automaticamente; selecione o texto.'))}
+function downloadAssets(){const t=document.getElementById('assetOutput').textContent;if(t.startsWith('Crie um projeto'))return;const blob=new Blob([t],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='mana-store-pacote-de-venda.txt';a.click();URL.revokeObjectURL(a.href)}
+refresh();
+</script>
+</body></html>
