@@ -107,7 +107,85 @@ $('productOutput').innerHTML='<b>'+esc(title)+'</b><p class="muted">Mercado: '+e
 function downloadProduct(){if(currentProduct)download('produto-'+Date.now()+'.txt',currentProduct.title+'\n\n'+currentProduct.body,'text/plain;charset=utf-8')}
 function downloadProductHtml(){if(!currentProduct)return;let escHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let sections=currentProduct.body.split('\\n\\n---\\n\\n').map(part=>'<section><pre>'+escHtml(part)+'</pre></section>').join('');let doc='<!doctype html><html lang="'+(currentProduct.lang==='es'?'es':'en')+'"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escHtml(currentProduct.title)+'</title><style>body{font:16px/1.65 Georgia,serif;color:#222;max-width:780px;margin:40px auto;padding:0 22px}h1{font:700 34px Arial,sans-serif;border-bottom:3px solid #b58a32;padding-bottom:18px}section{page-break-inside:avoid;border-bottom:1px solid #ddd;padding:12px 0}pre{white-space:pre-wrap;font:inherit}button{padding:12px 18px;background:#b58a32;border:0;border-radius:7px;font-weight:bold}@media print{button{display:none}body{margin:0 auto}}</style><h1>'+escHtml(currentProduct.title)+'</h1><p>'+escHtml(currentProduct.aud)+'</p>'+sections+'<button onclick="window.print()">Print / Save as PDF</button></html>';download('mana-store-'+Date.now()+'.html',doc,'text/html;charset=utf-8')}function saveProduct(){if(!currentProduct)return;let d=db();d.books.unshift(currentProduct);put(d);render();alert('Produto salvo neste aparelho.')}
 function useForPromo(){if(!currentProduct)return;$('promoTitle').value=currentProduct.title;$('promoAudience').value=currentProduct.aud;$('promoPain').value=currentProduct.problem;$('promoBenefit').value=currentProduct.out;$('promoLang').value=currentProduct.lang;$('promoCountries').value='México, Colombia, Chile, Perú, Argentina, España, Ecuador, Venezuela, Centroamérica, Caribe y público hispano de Estados Unidos';$('promoIncludes').value='Guía digital en español con método de planificación semanal, menú flexible de 7 días, lista de compras por categorías, control de presupuesto, preparación anticipada, consejos generales de conservación segura y plantillas reutilizables.';go('divulgacao')}
-function makePromo(){let title=v('promoTitle'),aud=v('promoAudience'),pain=v('promoPain'),inc=v('promoIncludes'),benefit=v('promoBenefit'),url=safeUrl(v('checkout')),lang=$('promoLang').value,countries=v('promoCountries');if(!title||!aud||!pain||!inc||!benefit)return alert('Preencha produto, público, problema, conteúdo e benefício.');if(v('checkout')&&!url)return alert('Confira o link do checkout.');let es=lang==='es';let cta=es?(url?'Consulta los detalles y accede aquí: '+url:'Añade aquí el enlace oficial de compra antes de publicar.'):(url?'View the details and access it here: '+url:'Add the official checkout link before publishing.');let hook=es?'¿Te resulta difícil resolver este problema?':'Struggling with this problem?';let intro=es?title+' fue creado para '+aud+'.':' '+title+' was created for '+aud+'.';let benefitLine=es?'Con este material podrás trabajar en: '+benefit:'This material helps you work on: '+benefit;let what=es?'Qué incluye: '+inc:'What is included: '+inc;let channels=es?'Canales para probar:\n• Instagram Reels y Stories: comparte un consejo útil del material.\n• Facebook: publica contenido educativo en comunidades que permitan promociones.\n• Pinterest: crea pines con listas y pasos prácticos.\n• Vídeos cortos: presenta el problema, una orientación útil y el material.\n• Investigación: valida las preguntas reales del público en comentarios y reseñas.':'Channels to test:\n• Instagram Reels and Stories: share one useful tip from the material.\n• Facebook: post educational content in communities that allow promotion.\n• Pinterest: create pins with checklists and practical steps.\n• Short videos: explain the problem, one useful tip, and the product.\n• Research: validate real audience questions in comments and reviews.';let personas=(es?'Público probable: ':'Likely audience: ')+aud+'\n'+(es?'Mercados para probar: ':'Markets to test: ')+countries+'\n'+(es?'Idioma: español':'Language: English')+'\n'+(es?'Valida señales: preguntas repetidas, comentarios, reseñas de soluciones competidoras y búsquedas relacionadas. No es una lista de compradores identificados.':'Validate signals: repeated questions, comments, competitor reviews, and related searches. This is not a list of identified buyers.');currentPromo={title,countries,lang,text:[hook,intro,benefitLine,what,cta,channels,personas].join('\n\n'),created:new Date().toISOString()};$('promoOutput').innerHTML='<div class="output">'+esc(currentPromo.text)+'</div><p class="small">'+(es?'Estrategia inicial, no prueba de demanda. Adapta el contenido a cada canal y cumple sus reglas.':'Initial strategy, not proof of demand. Adapt content to each channel and follow its rules.')+'</p>';$('promoActions').classList.remove('hidden')}function downloadPromo(){if(currentPromo)download('divulgacao-'+Date.now()+'.txt',currentPromo.title+'\n\n'+currentPromo.text,'text/plain;charset=utf-8')}
+function makePromo(){
+let title=v('promoTitle'),aud=v('promoAudience'),pain=v('promoPain'),inc=v('promoIncludes'),benefit=v('promoBenefit'),url=safeUrl(v('checkout')),lang=$('promoLang').value,countries=v('promoCountries');
+if(!title||!aud||!pain||!inc||!benefit)return alert('Preencha produto, público, problema, conteúdo e benefício.');
+if(v('checkout')&&!url)return alert('Confira o link do checkout.');
+let es=lang==='es',link=url||'[AÑADIR ENLACE OFICIAL DE CHECKOUT ANTES DE PUBLICAR]';
+let headline='Organiza tus comidas de la semana sin improvisar todos los días';
+let sub='Una guía práctica para planificar un menú flexible, preparar tu lista de compras y aprovechar mejor lo que ya tienes en casa.';
+let salesPage=[
+'PÁGINA DE VENTAS — '+title,
+'TITULAR: '+headline,
+'SUBTÍTULO: '+sub,
+'¿Te pasa que llega la hora de comer y no sabes qué preparar? ¿Compras ingredientes que luego se quedan olvidados? '+title+' está pensado para '+aud+'.',
+'EL PROBLEMA: '+pain,
+'QUÉ TE AYUDA A HACER: '+benefit,
+'QUÉ RECIBES: '+inc,
+'CÓMO FUNCIONA: revisas lo que ya tienes, eliges comidas sencillas, completas un menú flexible, preparas una lista por categorías y organizas una o dos tareas con anticipación. Puedes adaptar el sistema a tu país, presupuesto y preferencias.',
+'ES PARA TI SI: quieres reducir decisiones diarias, organizar compras y empezar con un plan sencillo.',
+'NO ES: una dieta clínica, un menú médico, una promesa de ahorro garantizado ni un sustituto de asesoría nutricional.',
+'PREGUNTAS FRECUENTES',
+'¿Necesito ingredientes especiales? No. La guía propone adaptar el menú a alimentos disponibles y preferencias.',
+'¿Es una dieta? No. Es una herramienta de planificación y organización.',
+'¿Puedo adaptarla a mi país? Sí; utiliza sustituciones locales y ajusta las recetas.',
+'¿Recibo un producto físico? No, es un material digital. Confirma el formato exacto y la entrega en el checkout.',
+'¿Puedo usarlo cada semana? Sí, las plantillas están pensadas para reutilizarse.',
+'CTA: Consulta el contenido y accede a la guía aquí: '+link,
+'Antes de publicar, completa precio, formato, política de reembolso, soporte, datos del vendedor y enlace de checkout.'
+].join('\n\n');
+let reels=[
+'¿También llegas a la hora de comer sin saber qué preparar? En vez de decidir desde cero cada día, prueba esto: revisa lo que ya tienes, elige tres comidas base y reutiliza ingredientes. Si quieres una plantilla para organizar la semana, conoce '+title+'.',
+'Antes de hacer las compras, abre tu refrigerador. Anota tres ingredientes que necesitas aprovechar y construye tu menú alrededor de ellos. Menos improvisación empieza con una lista más clara.',
+'Tu menú semanal no tiene que ser perfecto. Deja espacios flexibles para sobras, cambios de planes y comidas fuera de casa. La organización debe ayudarte, no convertirse en otra obligación.',
+'Un ingrediente, varias comidas: elige alimentos versátiles y úsalos en distintas preparaciones. Así tu lista puede ser más sencilla y tu semana más fácil de organizar.',
+'¿Compras de más y luego olvidas lo que tienes? Haz un inventario rápido de despensa y refrigerador antes de salir. Guarda esta idea para tu próxima compra.',
+'La lista de compras funciona mejor cuando nace del menú. Primero decide qué vas a preparar; después separa ingredientes por categorías y elimina lo que ya tienes.',
+'No tienes que cocinar toda la semana en un solo día. Adelanta una o dos tareas seguras y sencillas: lavar, porcionar o preparar una base. Empieza pequeño.',
+'¿Tu semana cambia a cada rato? Planifica comidas flexibles, no horarios rígidos. Ten una opción rápida y deja un espacio para imprevistos.',
+'Planear también es cuidar el presupuesto: define cuánto puedes gastar, revisa lo que ya tienes y prioriza ingredientes que puedas utilizar en varias comidas. El ahorro depende de tus precios y hábitos; no es automático.',
+'Si quieres dejar de improvisar cada día, '+title+' reúne una guía, un menú flexible y plantillas para planificar. Revisa exactamente qué incluye y decide si encaja con tu rutina.'
+];
+let carousels=[
+'Carrusel 1 — 5 pasos para organizar tus comidas: revisa tu despensa / elige comidas sencillas / reutiliza ingredientes / crea la lista / deja espacio flexible.',
+'Carrusel 2 — Errores al hacer las compras: ir sin revisar inventario / comprar sin menú / olvidar cantidades / no considerar días fuera / no planear cómo conservar alimentos.',
+'Carrusel 3 — Menú flexible, no perfecto: 3 comidas base / ingredientes compartidos / una opción rápida / un espacio para sobras / revisión semanal.',
+'Carrusel 4 — Lista de compras inteligente: frutas y verduras / proteínas y legumbres / cereales y tubérculos / despensa / compara con lo que ya tienes.',
+'Carrusel 5 — Empieza en 20 minutos: inventario rápido / elige 3 comidas / apunta ingredientes / revisa presupuesto / prepara la semana.'
+];
+let emails=[
+'ASUNTO: ¿Qué vamos a comer esta semana?\nHola. Si decidir cada comida te quita tiempo, empieza con un paso pequeño: revisa lo que ya tienes y elige tres comidas sencillas. En '+title+' encontrarás una estructura para organizar el menú y las compras. Consulta el contenido aquí: '+link,
+'ASUNTO: Tu lista de compras puede empezar en el menú\nPrimero decide qué comidas necesitas cubrir; después crea la lista por categorías y elimina lo que ya tienes. Una planificación flexible puede reducir la improvisación. Conoce la guía: '+link,
+'ASUNTO: Una semana más organizada empieza con un plan sencillo\nNo necesitas hacerlo perfecto. Elige una acción que puedas mantener esta semana y ajusta después. Si la guía encaja con lo que buscas, aquí puedes revisar los detalles: '+link
+];
+let localization=[
+'MÉXICO: usa “comida”, “frijoles”, “elote” y “lista del súper”.',
+'COLOMBIA: adapta a “almuerzo”, “fríjoles” y “mercado”.',
+'CARIBE: considera “habichuelas”, “víveres” y alimentos locales.',
+'CONO SUR: adapta “porotos”, “choclo” y “zapallo”.',
+'ESPAÑA: usa “comida”, “alubias/judías”, “patata” y “lista de la compra”.',
+'PÚBLICO HISPANO DE EE. UU.: español neutro, ejemplos bilingües opcionales y medidas claras.',
+'No uses una sola jerga como si representara a todos. Revisa palabras, ingredientes, moneda y ejemplos por país.'
+].join('\n');
+let controls=[
+'• No afirmar ahorro garantizado, pérdida de peso, beneficios médicos ni resultados nutricionales.',
+'• Revisar seguridad alimentaria con fuentes oficiales vigentes del país.',
+'• Mostrar formato, archivos incluidos, precio final, moneda, política de reembolso y soporte reales.',
+'• Identificar claramente el contenido promocional.',
+'• No usar testimonios, cifras ni urgencia inventados.',
+'• Probar el checkout desde celular y confirmar idioma, moneda y entrega.'
+].join('\n');
+currentPromo={title,countries,lang,text:[
+salesPage,
+'10 GUIONES DE REELS\n'+reels.map((x,i)=>(i+1)+'. '+x).join('\n\n'),
+'5 IDEAS DE CARRUSEL\n'+carousels.join('\n\n'),
+'SECUENCIA DE 3 EMAILS\n'+emails.join('\n\n'),
+'HASHTAGS\n#PlanificacionDeComidas #MenuSemanal #OrganizacionDelHogar #ListaDeCompras #CocinaFacil #AprovecharAlimentos #MealPlanning #ComidasEnCasa',
+'LOCALIZACIÓN POR MERCADO\n'+localization+'\nMercados objetivo: '+countries+'\nIdioma recomendado: español neutro comprensible, con vocabulario local en anuncios específicos.',
+'CONTROL ANTES DE PUBLICAR\n'+controls
+].join('\n\n'),created:new Date().toISOString()};
+$('promoOutput').innerHTML='<div class="output">'+esc(currentPromo.text)+'</div><p class="small">Paquete de lanzamiento inicial. El checkout debe probarse y completarse antes de publicar. La adaptación cultural por país requiere revisión final.</p>';$('promoActions').classList.remove('hidden')
+}function downloadPromo(){if(currentPromo)download('divulgacao-'+Date.now()+'.txt',currentPromo.title+'\n\n'+currentPromo.text,'text/plain;charset=utf-8')}
 function savePromo(){if(!currentPromo)return;let d=db();d.promos.unshift(currentPromo);put(d);render();alert('Pacote de divulgação salvo neste aparelho.')}
 function backup(){download('mana-store-backup.json',JSON.stringify(db(),null,2),'application/json')}
 function restore(){let f=$('backupFile').files[0];if(!f)return alert('Escolha um arquivo JSON.');let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);put({...blank(),...x});render();alert('Backup restaurado.')}catch{alert('Arquivo inválido.')}};r.readAsText(f)}
