@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('a[href*="pay.kiwify.com"]').forEach(function(link){
     link.addEventListener('click',function(){
       if(typeof window.fbq==='function'){
-        fbq('trackCustom','KiwifyCheckoutClick',{currency:'USD',value:9.99,content_name:'Menos Estrés, Más Comidas'});
+        fbq('track','InitiateCheckout',{currency:'USD',value:9.99,content_name:'Menos Estrés, Más Comidas'});
       }
     });
   });
