@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Una guía práctica para planificar un menú flexible de 7 días, organizar tu lista de compras y aprovechar mejor los ingredientes que ya tienes.">
+<meta name="description" content="Organiza un menú flexible de 7 días, prepara una lista de compras y aprovecha mejor los ingredientes que ya tienes con esta guía digital práctica.">
 <meta name="theme-color" content="#17130f">
-<!-- Meta Pixel: landing-page view tracking -->
+<title>Menos Estrés, Más Comidas | Guía digital de planificación</title>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -14,94 +14,149 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
 }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','2297158237526505');
 fbq('track','PageView');
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('a[href*="pay.kiwify.com"]').forEach(function(link){
-    link.addEventListener('click',function(){
-      if(typeof window.fbq==='function'){
-        fbq('track','InitiateCheckout',{currency:'USD',value:9.99,content_name:'Menos Estrés, Más Comidas'});
-      }
+document.addEventListener('click',function(event){
+  var link=event.target.closest('a[data-checkout="true"]');
+  if(link && typeof window.fbq==='function'){
+    fbq('track','InitiateCheckout',{
+      currency:'USD',
+      value:9.99,
+      content_name:'Menos Estrés, Más Comidas'
     });
-  });
+  }
 });
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2297158237526505&ev=PageView&noscript=1"
-/></noscript>
-<title>Menos Estrés, Más Comidas | Guía práctica</title>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2297158237526505&ev=PageView&noscript=1" alt=""></noscript>
 <style>
-:root{--ink:#211c17;--muted:#655d53;--gold:#c99b50;--cream:#fbf7ef;--paper:#fffdf9;--line:#e9dfd0}
-*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-.wrap{width:min(1080px,92%);margin:auto}.top{background:#17130f;color:#fff;padding:15px 0}.brand{font-weight:800;letter-spacing:2px;color:#e5bd78}
-.hero{padding:62px 0 48px;background:radial-gradient(circle at 85% 15%,#f0dfbd 0,transparent 34%),linear-gradient(135deg,#fffdf9,#f5ead7)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:42px;align-items:center}
-.kicker{color:#8a642e;text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700}
-h1{font-family:Georgia,serif;font-size:clamp(40px,6vw,66px);line-height:1.06;margin:14px 0 20px;letter-spacing:-1.5px}
-.lead{font-size:19px;color:#51483e;max-width:640px}
-.cover{width:100%;max-width:420px;display:block;margin:auto;border-radius:18px;box-shadow:0 22px 55px #59401f30}
-.cta{display:inline-block;margin-top:24px;background:#9b6d2f;color:white;text-decoration:none;padding:16px 25px;border-radius:8px;font-weight:800;box-shadow:0 8px 18px #9b6d2f30}
-.cta:hover{background:#795121}.note{font-size:12px;color:var(--muted);margin-top:10px}
-section{padding:55px 0}.section-title{font-family:Georgia,serif;font-size:clamp(29px,4vw,42px);line-height:1.15;margin:0 0 14px}
-.center{text-align:center}.sub{color:var(--muted);max-width:720px;margin:0 auto 30px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px}
-.card b{display:block;margin-bottom:7px}.icon{font-size:24px;margin-bottom:8px}
-.included{background:#211c17;color:white}.included .sub{color:#e4d8c8}.included .card{background:#2d261f;border-color:#514334;color:#fff}.included .card p{color:#e4d8c8}
-.steps{max-width:760px;margin:28px auto 0}.step{display:flex;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}.num{flex:0 0 34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#ead8b9;color:#5f421d;font-weight:800}
-.faq{max-width:760px;margin:25px auto}.faq details{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:10px 0}.faq summary{font-weight:700;cursor:pointer}
-.final{background:#efe2cc;text-align:center;padding:52px 0}.final p{max-width:650px;margin:0 auto;color:#51483e}
-footer{padding:24px 0;background:#17130f;color:#d8cbbb;font-size:12px;text-align:center}
-@media(max-width:760px){.hero{padding:42px 0}.hero-grid{grid-template-columns:1fr;gap:28px}.hero-copy{text-align:center}.cover{max-width:310px}.cards{grid-template-columns:1fr}section{padding:42px 0}}
+:root{--ink:#211c17;--muted:#62594f;--gold:#a8732e;--gold2:#80521d;--cream:#fbf7ef;--paper:#fffefa;--line:#e9dfd0;--dark:#211c17;--green:#53664a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+.wrap{width:min(1080px,92%);margin:auto}
+.top{background:#17130f;color:#fff;padding:13px 0}
+.brand{font-weight:800;letter-spacing:2px;color:#e5bd78}
+.hero{padding:54px 0 48px;background:radial-gradient(circle at 82% 12%,#f0dfbd 0,transparent 34%),linear-gradient(135deg,#fffefa,#f5ead7)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:42px;align-items:center}
+.kicker{display:inline-block;color:#80521d;text-transform:uppercase;letter-spacing:1.7px;font-size:12px;font-weight:800}
+h1{font-family:Georgia,serif;font-size:clamp(39px,5.8vw,62px);line-height:1.04;margin:13px 0 18px;letter-spacing:-1.4px}
+.lead{font-size:19px;color:#51483e;max-width:620px;margin:0 0 18px}
+.bullets{padding:0;margin:18px 0 0;list-style:none}
+.bullets li{margin:8px 0;color:#3f382f}
+.bullets li:before{content:"✓";font-weight:900;color:var(--green);margin-right:10px}
+.cover{width:100%;max-width:390px;display:block;margin:auto;border-radius:16px;box-shadow:0 22px 55px #59401f30}
+.price{font-size:17px;font-weight:800;margin:17px 0 0}
+.price small{font-size:13px;font-weight:400;color:var(--muted)}
+.cta{display:inline-block;margin-top:20px;background:var(--gold);color:white;text-decoration:none;padding:16px 24px;border-radius:9px;font-weight:800;text-align:center;box-shadow:0 8px 18px #9b6d2f30}
+.cta:hover{background:var(--gold2)}
+.micro{font-size:12px;color:var(--muted);margin:9px 0 0}
+.trustline{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:15px;font-size:12px;color:#5d554b}
+.trustline span:before{content:"•";color:var(--gold);font-weight:900;margin-right:6px}
+section{padding:52px 0}
+.center{text-align:center}
+.section-title{font-family:Georgia,serif;font-size:clamp(29px,4vw,41px);line-height:1.15;margin:0 0 13px}
+.sub{color:var(--muted);max-width:730px;margin:0 auto 28px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card b{display:block;margin-bottom:7px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.icon{font-size:24px;margin-bottom:8px}
+.included{background:var(--dark);color:white}
+.included .sub{color:#e4d8c8}
+.included .card{background:#2d261f;border-color:#514334;color:#fff}
+.included .card p{color:#e4d8c8}
+.how{max-width:760px;margin:26px auto 0;text-align:left}
+.step{display:flex;gap:15px;padding:15px 0;border-bottom:1px solid var(--line)}
+.num{flex:0 0 34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#ead8b9;color:#5f421d;font-weight:800}
+.callout{max-width:760px;margin:28px auto 0;background:#fffefa;border:1px solid var(--line);border-radius:14px;padding:22px;text-align:left}
+.callout strong{display:block;margin-bottom:6px}
+.faq{max-width:760px;margin:24px auto;text-align:left}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:15px 18px;margin:10px 0}
+.faq summary{font-weight:700;cursor:pointer}
+.faq p{color:var(--muted);margin-bottom:0}
+.final{background:#efe2cc;text-align:center;padding:48px 0}
+.final p{max-width:670px;margin:0 auto;color:#51483e}
+footer{padding:23px 0;background:#17130f;color:#d8cbbb;font-size:12px;text-align:center}
+.mobile-cta{display:none}
+@media(max-width:760px){
+ .hero{padding:38px 0 34px}
+ .hero-grid{grid-template-columns:1fr;gap:25px}
+ .hero-copy{text-align:left}
+ .cover{max-width:270px}
+ .cards{grid-template-columns:1fr}
+ section{padding:40px 0}
+ .mobile-cta{display:block;position:fixed;z-index:20;bottom:0;left:0;right:0;padding:9px 4%;background:#fffefaee;border-top:1px solid var(--line);backdrop-filter:blur(8px)}
+ .mobile-cta .cta{display:block;margin:0;padding:13px 16px}
+ body{padding-bottom:72px}
+}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap"><span class="brand">MANÁ STORE</span></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid">
-<div class="hero-copy">
-<div class="kicker">Guía digital práctica</div>
-<h1>Menos Estrés,<br>Más Comidas</h1>
-<p class="lead">Organiza tus comidas de la semana sin tener que decidir desde cero cada día. Una guía sencilla para planificar un menú flexible, preparar tu lista de compras y aprovechar mejor lo que ya tienes en casa.</p>
-<a class="cta" href="https://pay.kiwify.com/d5pHsHK" target="_blank" rel="noopener">QUIERO ORGANIZAR MI SEMANA</a>
-<p class="note">Guía digital · US$ 9,99 · Pago seguro y entrega digital a través de Kiwify.</p>
-</div>
-<div><img class="cover" src="https://aws-assets.kiwify.com.br/aZNzHlD4zpxxBOm/Menos-Estresse-Mais-Refeicoes_98c9577c65e541fa90fc9335c5714f63.png" alt="Portada de Menos Estrés, Más Comidas"></div>
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div class="hero-copy">
+   <span class="kicker">Guía digital práctica</span>
+   <h1>Deja de improvisar cada comida. Organiza tu semana.</h1>
+   <p class="lead">Una forma sencilla de planificar 7 días de comidas, preparar una lista de compras clara y aprovechar mejor lo que ya tienes en casa.</p>
+   <ul class="bullets">
+    <li>Un ejemplo de menú flexible para 7 días</li>
+    <li>Lista de compras organizada por categorías</li>
+    <li>Plantillas para menú, compras y presupuesto semanal</li>
+   </ul>
+   <a class="cta" data-checkout="true" href="https://pay.kiwify.com/d5pHsHK" target="_blank" rel="noopener">QUIERO LA GUÍA DIGITAL</a>
+   <p class="price">US$ 9,99 <small>· pago único</small></p>
+   <p class="micro">Producto digital en PDF. El checkout de Kiwify muestra la moneda, los medios de pago y las condiciones disponibles para tu país.</p>
+   <div class="trustline"><span>Compra en Kiwify</span><span>Sin envío físico</span><span>Contenido práctico y flexible</span></div>
+  </div>
+  <div><img class="cover" src="https://aws-assets.kiwify.com.br/aZNzHlD4zpxxBOm/Menos-Estresse-Mais-Refeicoes_98c9577c65e541fa90fc9335c5714f63.png" alt="Portada de la guía Menos Estrés, Más Comidas"></div>
+ </div>
+</section>
+<section><div class="wrap center">
+ <h2 class="section-title">¿Te pasa esto durante la semana?</h2>
+ <p class="sub">Abres la nevera y no sabes qué preparar, compras sin una lista o terminas olvidando ingredientes. Esta guía te ayuda a pasar de la improvisación a un plan que puedes adaptar a tu hogar.</p>
+ <div class="cards">
+  <article class="card"><div class="icon">📅</div><b>Decidir con anticipación</b><p>Usa un menú de 7 días como punto de partida y ajústalo a tus gustos, horarios y rutina.</p></article>
+  <article class="card"><div class="icon">🛒</div><b>Comprar con una lista</b><p>Agrupa ingredientes por categorías y revisa primero tu despensa y refrigerador.</p></article>
+  <article class="card"><div class="icon">🍲</div><b>Organizar sin complicarte</b><p>Identifica preparaciones que puedes adelantar y deja alternativas para los días ocupados.</p></article>
+ </div>
+</div></section>
+<section class="included"><div class="wrap center">
+ <h2 class="section-title">Esto es lo que recibes</h2>
+ <p class="sub">Una guía digital para repetir el proceso de planificación semana tras semana.</p>
+ <div class="cards">
+  <article class="card"><b>Planificación paso a paso</b><p>Revisión de lo que tienes, organización de comidas y método para crear tu plan semanal.</p></article>
+  <article class="card"><b>Ejemplo de menú de 7 días</b><p>Una propuesta flexible que puedes modificar según tus preferencias y los alimentos disponibles.</p></article>
+  <article class="card"><b>Plantillas reutilizables</b><p>Espacios para anotar el menú, la lista de compras y tu presupuesto semanal.</p></article>
+ </div>
 </div></section>
 <section><div class="wrap center">
-<h2 class="section-title">Una semana más organizada empieza con un plan sencillo</h2>
-<p class="sub">Si te cuesta decidir qué cocinar, haces compras sin una lista clara o terminas olvidando ingredientes en la nevera, esta guía te ayuda a poner orden con pasos fáciles de adaptar a tu rutina.</p>
-<div class="cards">
-<div class="card"><div class="icon">📅</div><b>Menú flexible de 7 días</b><p>Un ejemplo semanal que puedes adaptar a tus gustos, horarios y alimentos disponibles.</p></div>
-<div class="card"><div class="icon">🛒</div><b>Lista de compras organizada</b><p>Ordena los ingredientes por categorías y revisa primero lo que ya tienes en casa.</p></div>
-<div class="card"><div class="icon">🍲</div><b>Menos improvisación</b><p>Ideas para adelantar algunas preparaciones y dejar alternativas sencillas para días ocupados.</p></div>
-</div></div></section>
-<section class="included"><div class="wrap center">
-<h2 class="section-title">¿Qué encontrarás en la guía?</h2>
-<p class="sub">Herramientas prácticas para empezar a planificar y reutilizar el método semana tras semana.</p>
-<div class="cards">
-<div class="card"><b>Planificación paso a paso</b><p>Revisión de despensa, organización de comidas y método para preparar un plan semanal.</p></div>
-<div class="card"><b>Ejemplo de menú</b><p>Una propuesta de 7 días que sirve como punto de partida y puede ajustarse a tu hogar.</p></div>
-<div class="card"><b>Plantillas reutilizables</b><p>Espacios para anotar menú, lista de compras y presupuesto semanal.</p></div>
-</div></div></section>
+ <h2 class="section-title">Cómo empezar</h2>
+ <p class="sub">No necesitas cambiar toda tu rutina. Empieza con tres pasos sencillos.</p>
+ <div class="how">
+  <div class="step"><span class="num">1</span><div><b>Revisa lo que ya tienes</b><br>Comprueba tu despensa y refrigerador antes de preparar la lista.</div></div>
+  <div class="step"><span class="num">2</span><div><b>Adapta el menú</b><br>Elige opciones sencillas y comparte ingredientes cuando sea posible.</div></div>
+  <div class="step"><span class="num">3</span><div><b>Organiza tus compras</b><br>Haz una lista por categorías y define un presupuesto realista.</div></div>
+ </div>
+ <div class="callout"><strong>Importante: es una guía flexible, no un menú obligatorio.</strong> Puedes cambiar alimentos y recetas según tus preferencias, presupuesto, horarios y disponibilidad local. No promete un ahorro fijo: el resultado depende de tus decisiones y de los precios de tu zona.</div>
+ <a class="cta" data-checkout="true" href="https://pay.kiwify.com/d5pHsHK" target="_blank" rel="noopener">OBTENER LA GUÍA POR US$ 9,99</a>
+</div></section>
 <section><div class="wrap center">
-<h2 class="section-title">Empieza con estos pasos</h2>
-<div class="steps">
-<div class="step"><span class="num">1</span><div><b>Revisa lo que ya tienes</b><br>Comprueba tu despensa y refrigerador antes de hacer la lista.</div></div>
-<div class="step"><span class="num">2</span><div><b>Organiza tus comidas</b><br>Elige opciones sencillas y comparte ingredientes cuando sea posible.</div></div>
-<div class="step"><span class="num">3</span><div><b>Prepara tu compra</b><br>Haz una lista por categorías y define un presupuesto realista.</div></div>
-</div></div></section>
-<section><div class="wrap center">
-<h2 class="section-title">Preguntas frecuentes</h2>
-<div class="faq">
-<details><summary>¿Es un producto físico?</summary><p>No. Es una guía digital. Revisa los detalles de formato y entrega que aparecen en el checkout de Kiwify antes de finalizar la compra.</p></details>
-<details><summary>¿Tengo que seguir el menú exactamente?</summary><p>No. El menú es un ejemplo flexible. Puedes cambiar alimentos y recetas según tus preferencias, presupuesto y disponibilidad local.</p></details>
-<details><summary>¿La guía promete ahorrar una cantidad específica?</summary><p>No. Los resultados dependen de tus hábitos, precios locales y decisiones de compra. La guía ofrece organización y herramientas para planificar mejor.</p></details>
-<details><summary>¿Dónde puedo comprarla?</summary><p>Al pulsar el botón de compra, accederás al checkout seguro de Kiwify para consultar el precio, los medios de pago y las condiciones disponibles en tu país.</p></details>
-</div></div></section>
+ <h2 class="section-title">Preguntas frecuentes</h2>
+ <div class="faq">
+  <details><summary>¿Es un producto físico?</summary><p>No. Es una guía digital en PDF; no recibirás un paquete físico.</p></details>
+  <details><summary>¿Tengo que seguir el menú exactamente?</summary><p>No. El menú es un ejemplo flexible. Puedes cambiar alimentos y recetas según tus gustos y necesidades.</p></details>
+  <details><summary>¿Cómo puedo pagar?</summary><p>Al pulsar el botón, entrarás al checkout de Kiwify. Allí verás la moneda, los medios de pago y las condiciones disponibles para tu país antes de confirmar.</p></details>
+  <details><summary>¿Cómo recibo la guía?</summary><p>La compra y la entrega digital se gestionan a través de Kiwify. Revisa las instrucciones que aparecen después del pago.</p></details>
+ </div>
+</div></section>
 <section class="final"><div class="wrap">
-<h2 class="section-title">Haz que planificar sea más sencillo</h2>
-<p>Con un menú flexible, una lista clara y algunas preparaciones anticipadas, puedes afrontar la semana con más organización y menos decisiones de último minuto.</p>
-<a class="cta" href="https://pay.kiwify.com/d5pHsHK" target="_blank" rel="noopener">SÍ, QUIERO MENOS ESTRÉS</a>
-<p class="note">La compra se completa en Kiwify. Precio, moneda, métodos de pago y entrega se muestran en el checkout.</p>
+ <h2 class="section-title">Una semana más organizada empieza con un plan.</h2>
+ <p>Si quieres dejar de decidir desde cero cada día, esta guía te ofrece una estructura sencilla para planificar tus comidas y tus compras.</p>
+ <a class="cta" data-checkout="true" href="https://pay.kiwify.com/d5pHsHK" target="_blank" rel="noopener">SÍ, QUIERO ORGANIZAR MI SEMANA</a>
+ <p class="micro">US$ 9,99 · Pago único · Checkout seguro de Kiwify</p>
 </div></section>
 </main>
-<footer><div class="wrap">MANÁ STORE · Producto digital de planificación de comidas.<br>El contenido es informativo y debe adaptarse a las necesidades y circunstancias de cada hogar.</div></footer>
-</body></html>
+<div class="mobile-cta"><a class="cta" data-checkout="true" href="https://pay.kiwify.com/d5pHsHK" target="_blank" rel="noopener">OBTENER LA GUÍA · US$ 9,99</a></div>
+<footer><div class="wrap">MANÁ STORE · Guía digital de planificación de comidas.<br>Contenido informativo y flexible; adapta las sugerencias a las necesidades de tu hogar.</div></footer>
+</body>
+</html>
